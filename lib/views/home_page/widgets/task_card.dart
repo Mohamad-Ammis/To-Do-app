@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:to_do_app/constans.dart';
+import 'package:to_do_app/model/task_model.dart';
 
 class TaskCard extends StatelessWidget {
   const TaskCard({
     super.key,
+    required this.model,
   });
-
+  final TaskModel model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +16,7 @@ class TaskCard extends StatelessWidget {
       width: MediaQuery.sizeOf(context).width,
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
-        color: Constans.kCardBackgroundColor,
+        color: Color(model.color),
         borderRadius: BorderRadius.circular(Constans.kCardBorderRadius),
       ),
       child: Stack(
@@ -25,13 +28,17 @@ class TaskCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   decoration: BoxDecoration(
                       color: Constans.kImportantTaskColor,
                       borderRadius:
                           BorderRadius.circular(Constans.kCardBorderRadius)),
                   child: Text(
-                    "Important",
+                    model.priority < 4
+                        ? "High"
+                        : model.priority < 7
+                            ? "Medium"
+                            : "Low",
                     style: TextStyle(
                         color: Constans.kWhiteElementColor,
                         fontFamily: Constans.kFontFamily,
@@ -43,7 +50,7 @@ class TaskCard extends StatelessWidget {
                   height: 15,
                 ),
                 Text(
-                  "Task Bold Title",
+                  model.title,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Constans.kWhiteElementColor,
@@ -62,7 +69,8 @@ class TaskCard extends StatelessWidget {
                       color: Color(0xFF7D7D7D),
                     ),
                     Text(
-                      " Monday 20-08-2024 At 10:10",
+                      DateFormat('MMM d, y')
+                          .format(DateTime.parse(model.endDate)),
                       style: TextStyle(
                           color: Color(0xFF7D7D7D),
                           fontFamily: Constans.kFontFamily,

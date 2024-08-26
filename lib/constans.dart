@@ -7,6 +7,7 @@ class Constans {
   static const Color kImportantTaskColor = Color(0xFFFF8080);
   static const String kFontFamily = 'Poppins';
   static const double kCardBorderRadius = 16.0;
+  static const String kTasksBox = 'task_box';
   static const List<Color> kColors = [
     Color(0xffFF6F61), // Coral Pink
     Color(0xff0D47A1), // Classic Blue
@@ -58,5 +59,4 @@ class Constans {
     Color(0xff558B2F), // Avocado
     Color(0xffC62828), // Red Dark
   ];
-  
 }

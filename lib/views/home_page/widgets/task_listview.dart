@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:to_do_app/views/home_page/widgets/task_card.dart';
 
@@ -12,7 +11,11 @@ class TasksListView extends StatelessWidget {
     return ListView.builder(
         itemCount: 6,
         itemBuilder: (context, index) {
-          return TaskCard();
+          return index == 5
+              ? SizedBox(
+                  height: 100,
+                )
+              : TaskCard();
         });
   }
 }

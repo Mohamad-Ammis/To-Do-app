@@ -1,15 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/add_task_controller.dart';
+import 'package:to_do_app/controllers/edit_task_controller.dart';
 
 class CustomTableCalender extends StatelessWidget {
-  const CustomTableCalender({
+  CustomTableCalender({
     super.key,
+    required this.isEditingPage,
   });
-
+  final bool isEditingPage;
+  final editTaskController = Get.put(EditTaskController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddTaskController>(
@@ -33,6 +35,10 @@ class CustomTableCalender extends StatelessWidget {
             },
             onDaySelected: (selectedDay, focusedDay) {
               controller.selectedDate = selectedDay;
+              if (isEditingPage) {
+                editTaskController.selectedDate = selectedDay;
+                editTaskController.update();
+              }
               controller.update();
             },
             calendarStyle: const CalendarStyle(

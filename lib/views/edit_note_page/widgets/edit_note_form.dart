@@ -2,23 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/add_task_controller.dart';
+import 'package:to_do_app/controllers/edit_task_controller.dart';
 import 'package:to_do_app/controllers/form_controller.dart';
+import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/utils/app_images.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
 
-class AddTaskForm extends StatelessWidget {
-   AddTaskForm({
+class EditNoteForm extends StatelessWidget {
+   EditNoteForm({
     super.key,
+    required this.model,
   });
-  final controller = Get.put(AddTaskController());
+  final TaskModel model;
+  final controller = Get.put(EditTaskController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<FormController>(
-        init: FormController(),
-        builder: (fotmController) {
+    return GetBuilder<EditTaskController>(
+        init: EditTaskController(),
+        builder: (controller) {
           return Form(
-            key: fotmController.formKey,
-            autovalidateMode: fotmController.autovalidateMode,
+
             child: Column(
               children: [
                 Stack(
@@ -27,6 +30,7 @@ class AddTaskForm extends StatelessWidget {
                       onChanged: (data) {
                         controller.taskTitle = data;
                       },
+                      initialValue: model.title,
                       hintText: 'Enter yout task title ...',
                       hintStyle: TextStyle(
                           color: Constans.kWhiteElementColor.withOpacity(.3),
@@ -67,6 +71,7 @@ class AddTaskForm extends StatelessWidget {
                       onChanged: (data) {
                         controller.taskDescription = data;
                       },
+                      initialValue: model.description,
                       maxLines: 5,
                       hintText: 'Enter your task description ...',
                       hintStyle: TextStyle(

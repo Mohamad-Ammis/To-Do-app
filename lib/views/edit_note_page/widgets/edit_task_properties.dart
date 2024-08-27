@@ -5,8 +5,8 @@ import 'package:to_do_app/views/add_task_page/widgets/priority_dialog.dart';
 import 'package:to_do_app/widgets/custom_date_picker/custom_date_picker.dart';
 import 'package:to_do_app/widgets/custom_timer_picker/time_picker.dart';
 
-class TaskProperties extends StatelessWidget {
-  const TaskProperties({
+class EditTaskProperties extends StatelessWidget {
+  const EditTaskProperties({
     super.key,
   });
 
@@ -19,9 +19,7 @@ class TaskProperties extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return CustomDatePicker(
-                    isEditingPage: false,
-                  );
+                  return CustomDatePicker(isEditingPage: true,);
                 },
               );
             },
@@ -41,9 +39,7 @@ class TaskProperties extends StatelessWidget {
                   content: Container(
                     width: 300,
                     height: 450,
-                    child: CustomTimerPicker(
-                      isEditingPage: false,
-                    ),
+                    child: CustomTimerPicker(isEditingPage: true,),
                   ),
                 );
               },
@@ -60,7 +56,7 @@ class TaskProperties extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) {
-                return PriorityDialog(isEditingPage: false,);
+                return PriorityDialog(isEditingPage: true,);
               },
             );
           },

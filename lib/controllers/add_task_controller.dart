@@ -9,21 +9,12 @@ class AddTaskController extends GetxController {
   DateTime selectedDate = DateTime.now();
   int selectedHourIndex = 1;
   int selectedMinuteIndex = 0;
+  String taskTitle = '';
+  String taskDescription = '';
+  int selectedColorIndex = 0;
   bool setTime = false;
   bool setDate = false;
   bool setPriority = false;
 
-  late final GlobalKey<FormState> formKey;
-  late AutovalidateMode autovalidateMode;
-  String taskTitle = '';
-  String taskDescription = '';
-  int selectedColorIndex = 0;
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    formKey = GlobalKey();
-    autovalidateMode = AutovalidateMode.disabled;
-  }
+ 
 }

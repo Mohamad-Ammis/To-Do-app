@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.hintText,
     this.hintStyle,
     this.prefixIcon,
-    this.maxLines,
+    this.maxLines, this.initialValue,
   });
   final TextStyle textStyle;
   final Color cursorColor;
@@ -36,6 +36,7 @@ class CustomTextField extends StatelessWidget {
   final bool? isEmail;
   final bool? isUserName;
   final int? maxLines;
+  final String? initialValue;
   final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
@@ -48,11 +49,11 @@ class CustomTextField extends StatelessWidget {
           return null;
         }
       },
+      initialValue: initialValue,
       maxLines: maxLines,
       cursorColor: cursorColor,
       style: textStyle,
-      
-      decoration: InputDecoration(  
+      decoration: InputDecoration(
         hintText: hintText,
         hintStyle: hintStyle,
         contentPadding: const EdgeInsets.fromLTRB(32, 16, 8, 16),

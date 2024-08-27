@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constans.dart';
+import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/views/add_task_page/widgets/add_task_appbar.dart';
-import 'package:to_do_app/views/add_task_page/widgets/add_task_form.dart';
-import 'package:to_do_app/views/add_task_page/widgets/task_info_footer.dart';
-import 'package:to_do_app/views/add_task_page/widgets/task_properties.dart';
+import 'package:to_do_app/views/edit_note_page/widgets/edit_note_form.dart';
+import 'package:to_do_app/views/edit_note_page/widgets/edit_task_appbar.dart';
+import 'package:to_do_app/views/edit_note_page/widgets/edit_task_footer.dart';
+import 'package:to_do_app/views/edit_note_page/widgets/edit_task_properties.dart';
 import 'package:to_do_app/widgets/color_List_view.dart';
 
-class AddTaskPage extends StatelessWidget {
-  const AddTaskPage({super.key});
-
+class EditTaskPage extends StatelessWidget {
+  const EditTaskPage({super.key, required this.model});
+  final TaskModel model;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AddTaskAppbar(),
+      appBar: EditTaskAppbar(
+        model: model,
+      ),
       backgroundColor: Constans.kDarkBackgroundColor,
       body: Container(
         padding: const EdgeInsets.all(16),
@@ -20,7 +24,7 @@ class AddTaskPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AddTaskForm(),
+              EditNoteForm(model: model),
               SizedBox(
                 height: 20,
               ),
@@ -35,7 +39,9 @@ class AddTaskPage extends StatelessWidget {
                 height: 10,
               ),
               ColorListView(
-                isEditPage: false,
+                isEditPage: true,
+                selectedColorIndex:
+                    Constans.kColors.indexOf(Color(model.color)),
               ),
               SizedBox(
                 height: 20,
@@ -48,11 +54,13 @@ class AddTaskPage extends StatelessWidget {
                     fontFamily: Constans.kFontFamily,
                     fontSize: 16),
               ),
-              TaskProperties(),
+              EditTaskProperties(),
               SizedBox(
                 height: 20,
               ),
-              TaskInfoFooter()
+              EditTaskFooter(
+                model: model,
+              )
             ],
           ),
         ),

@@ -12,13 +12,82 @@ class TaskController extends GetxController {
   }
 
   List<TaskModel> tasks = [];
+
   getTasks() {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
-    tasks = taskBox.values.toList();
-    for (var element in tasks) {
+    DateTime today = DateTime.now();
+    tasks = taskBox.values.where((task) {
+      DateTime taskDate = DateTime.parse(task.endDate);
+      return taskDate.isAfter(today) || taskDate.isAtSameMomentAs(today);
+    }).toList();
+    tasks.sort((a, b) {
+      DateTime dateA = DateTime.parse(a.endDate);
+      DateTime dateB = DateTime.parse(b.endDate);
+      return dateA.compareTo(dateB);
+    });
+
+    debugPrint('tasks: $tasks');
+  }
+
+  List<TaskModel> tasksBeforeToday = [];
+  getMissingTasks() {
+    var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
+    DateTime today = DateTime.now();
+
+    tasks = taskBox.values.where((task) {
+      DateTime taskDate = DateTime.parse(task.endDate);
+      return taskDate.isBefore(today);
+    }).toList();
+
+    tasksBeforeToday.sort((a, b) {
+      DateTime dateA = DateTime.parse(a.endDate);
+      DateTime dateB = DateTime.parse(b.endDate);
+      return dateA.compareTo(dateB);
+    });
+
+    for (var element in tasksBeforeToday) {
       debugPrint(element.endDate);
     }
-    debugPrint('tasks: ${tasks}');
+
+    debugPrint('tasksBeforeToday: $tasksBeforeToday');
+  }
+  List<TaskModel> searchTasksList = [];
+
+searchTasks(String searchText) {
+  var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
+
+  searchTasksList = taskBox.values.where((task) {
+    return task.title.toLowerCase().contains(searchText.toLowerCase());
+  }).toList();
+
+  searchTasksList.sort((a, b) {
+    DateTime dateA = DateTime.parse(a.endDate);
+    DateTime dateB = DateTime.parse(b.endDate);
+    return dateA.compareTo(dateB);
+  });
+
+  for (var element in searchTasksList) {
+    debugPrint(element.title);
+  }
+
+  debugPrint('tasksWithTitleContaining: $searchTasksList');
+}
+
+
+  deleteTasksWithEmptyTitle() {
+    var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
+
+    // احصل على قائمة بالمهام التي عنوانها فارغ
+    var tasksWithEmptyTitle =
+        taskBox.values.where((task) => task.title.isEmpty).toList();
+
+    // احذف كل مهمة ذات عنوان فارغ
+    for (var task in tasksWithEmptyTitle) {
+      task.delete(); // يحذف المهمة من Hive
+    }
+
+    debugPrint(
+        '${tasksWithEmptyTitle.length} tasks with empty titles were deleted.');
   }
 
   @override
@@ -28,3 +97,4 @@ class TaskController extends GetxController {
     getTasks();
   }
 }
+

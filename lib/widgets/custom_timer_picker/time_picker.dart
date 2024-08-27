@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/add_task_controller.dart';
+import 'package:to_do_app/controllers/edit_task_controller.dart';
 import 'package:to_do_app/widgets/custom_timer_picker/hours.dart';
 import 'package:to_do_app/widgets/custom_timer_picker/minutes.dart';
 
 class CustomTimerPicker extends StatefulWidget {
-  const CustomTimerPicker({super.key});
-
+  const CustomTimerPicker({super.key, required this.isEditingPage});
+  final bool isEditingPage;
   @override
   State<CustomTimerPicker> createState() => _CustomTimerPickerState();
 }
@@ -35,6 +36,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
     super.dispose();
   }
 
+  final editTaskController = Get.put(EditTaskController());
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -68,6 +70,11 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                                   controller: hoursController,
                                   onSelectedItemChanged: (index) {
                                     taskController.selectedHourIndex = index;
+                                    if (widget.isEditingPage) {
+                                      editTaskController.selectedHourIndex =
+                                          index;
+                                      editTaskController.update();
+                                    }
                                     taskController.update();
                                   },
                                   itemExtent: 50,
@@ -113,6 +120,12 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                                   controller: minutesController,
                                   onSelectedItemChanged: (value) {
                                     taskController.selectedMinuteIndex = value;
+                                    if (widget.isEditingPage) {
+                                      editTaskController.selectedMinuteIndex =
+                                          value;
+                                      editTaskController.update();
+                                    }
+
                                     taskController.update();
                                   },
                                   itemExtent: 50,

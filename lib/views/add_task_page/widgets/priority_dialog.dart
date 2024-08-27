@@ -8,9 +8,9 @@ import 'package:to_do_app/widgets/custom_timer_picker/time_picker.dart';
 
 class PriorityDialog extends StatelessWidget {
   const PriorityDialog({
-    super.key,
+    super.key, required this.isEditingPage,
   });
-
+  final bool isEditingPage;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddTaskController>(
@@ -52,7 +52,10 @@ class PriorityDialog extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Expanded(child: PriorityGridView()),
+                  Expanded(
+                      child: PriorityGridView(
+                    isEditingPage: isEditingPage,
+                  )),
                   CustomButton(
                     title: 'S A V E',
                     onTap: () {

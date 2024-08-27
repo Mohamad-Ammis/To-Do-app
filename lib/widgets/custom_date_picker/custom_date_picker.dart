@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/add_task_controller.dart';
+import 'package:to_do_app/controllers/edit_task_controller.dart';
 import 'package:to_do_app/widgets/custom_date_picker/custom_table_calender.dart';
 import 'package:to_do_app/widgets/custom_timer_picker/time_picker.dart';
 
 class CustomDatePicker extends StatelessWidget {
-  const CustomDatePicker({
-    super.key,
+  CustomDatePicker({
+    super.key, required this.isEditingPage,
   });
-
+  final bool isEditingPage;
+  final editTaskController = Get.put(EditTaskController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddTaskController>(
@@ -23,7 +25,7 @@ class CustomDatePicker extends StatelessWidget {
               height: 450,
               child: Stack(
                 children: [
-                  CustomTableCalender(),
+                  CustomTableCalender(isEditingPage:isEditingPage),
                   Positioned.fill(
                       child: Align(
                     alignment: Alignment.bottomCenter,

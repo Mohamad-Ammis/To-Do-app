@@ -5,7 +5,7 @@ import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/model/task_model.dart';
 
 class AddTaskController extends GetxController {
-  int selectedPriority = -1;
+  int selectedPriority = 1;
   DateTime selectedDate = DateTime.now();
   int selectedHourIndex = 1;
   int selectedMinuteIndex = 0;
@@ -18,18 +18,6 @@ class AddTaskController extends GetxController {
   String taskTitle = '';
   String taskDescription = '';
   int selectedColorIndex = 0;
-  addTask(TaskModel model) async {
-    var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
-    var status = await taskBox.add(model);
-    debugPrint('status: ${status}');
-  }
-
-  List<TaskModel> tasks = [];
-  getTasks() {
-    var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
-    tasks = taskBox.values.toList();
-    debugPrint('tasks: ${tasks}');
-  }
 
   @override
   void onInit() {
@@ -37,6 +25,5 @@ class AddTaskController extends GetxController {
     super.onInit();
     formKey = GlobalKey();
     autovalidateMode = AutovalidateMode.disabled;
-    getTasks();
   }
 }

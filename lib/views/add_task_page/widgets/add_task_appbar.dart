@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/add_task_controller.dart';
+import 'package:to_do_app/controllers/navigation_controller.dart';
+import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/helper/custom_toast_notification.dart';
 import 'package:to_do_app/model/task_model.dart';
 
 class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const AddTaskAppbar({
+  AddTaskAppbar({
     super.key,
   });
-
+  final taskController = Get.put(TaskController());
+  final navigationController = Get.put(NavigationController());
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -34,7 +37,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                           controller.setDate &&
                           controller.setTime) {
                         debugPrint('validate');
-                        controller.addTask(TaskModel(
+                        taskController.addTask(TaskModel(
                             title: controller.taskTitle,
                             description: controller.taskDescription,
                             endDate: controller.selectedDate.toString(),
@@ -43,6 +46,10 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                             priority: controller.selectedPriority,
                             color: Constans
                                 .kColors[controller.selectedColorIndex].value));
+                        navigationController.selectedIndex = 0;
+                        taskController.getTasks();
+                        taskController.update();
+                        navigationController.update();
                       } else {
                         showErrorSnackBar('Error Happened',
                                 "Date,Time,Priority Fields are required")
@@ -53,9 +60,21 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                       controller.update();
                     }
                   },
-                  icon: Icon(
-                    Icons.done,
-                    color: Constans.kWhiteElementColor,
+                  icon: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 10, color: Colors.white.withOpacity(.3))
+                      ],
+                      shape: BoxShape.circle,
+                      color: Constans.kCardBackgroundColor,
+                    ),
+                    child: Icon(
+                      Icons.done,
+                      color: Constans.kWhiteElementColor,
+                    ),
                   ));
             })
       ],

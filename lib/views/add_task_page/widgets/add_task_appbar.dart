@@ -61,7 +61,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                               controller.setDate = false;
                               controller.setTime = false;
                               controller.setPriority = false;
-                              taskController.getTasks();
+                              taskController.getAllTasks();
                               taskController.update();
                               Get.offAll(() => HomePage());
                             } else {

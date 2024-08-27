@@ -18,18 +18,20 @@ class TasksListView extends StatelessWidget {
         init: TaskController(),
         builder: (controller) {
           return ListView.builder(
-              itemCount: controller.tasks.length + 1,
+              itemCount: controller.displayTasksList.length + 1,
               itemBuilder: (context, index) {
-                return index == controller.tasks.length
+                return index == controller.displayTasksList.length
                     ? SizedBox(
                         height: 100,
                       )
                     : GestureDetector(
                         onTap: () {
-                          Get.to(() => EditTaskPage(model: controller.tasks[index],));
+                          Get.to(() => EditTaskPage(
+                                model: controller.displayTasksList[index],
+                              ));
                         },
                         child: TaskCard(
-                          model: controller.tasks[index],
+                          model: controller.displayTasksList[index],
                         ),
                       );
               });

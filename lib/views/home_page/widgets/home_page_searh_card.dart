@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
+import 'package:to_do_app/controllers/task_controller.dart';
 
 class HomePageSearchBar extends StatelessWidget {
-  const HomePageSearchBar({
+  HomePageSearchBar({
     super.key,
   });
-
+  final controller = Get.put(TaskController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,6 +27,13 @@ class HomePageSearchBar extends StatelessWidget {
           ),
           Expanded(
               child: TextField(
+            style: TextStyle(
+                fontFamily: Constans.kFontFamily,
+                color: Constans.kWhiteElementColor),
+            onChanged: (value) {
+              controller.displayTasksList = controller.searchTasks(value);
+              controller.update();
+            },
             decoration: InputDecoration(
                 border: OutlineInputBorder(borderSide: BorderSide.none),
                 enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),

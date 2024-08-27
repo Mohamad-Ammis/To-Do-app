@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
+import 'package:to_do_app/controllers/home_page.controller.dart';
 import 'package:to_do_app/views/home_page/widgets/filters_listview.dart';
 import 'package:to_do_app/views/home_page/widgets/home_page_appbar.dart';
 import 'package:to_do_app/views/home_page/widgets/home_page_searh_card.dart';
@@ -21,11 +23,16 @@ class HomePageBody extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14),
-            height: 40,
-            child: FiltersListView(),
-          ),
+          GetBuilder<HomePageController>(
+              init: HomePageController(),
+              builder: (controller) {
+                return AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  padding: EdgeInsets.symmetric(horizontal: 14),
+                  height: controller.showFilter ? 40 : 0,
+                  child: FiltersListView(),
+                );
+              }),
           SizedBox(
             height: 20,
           ),

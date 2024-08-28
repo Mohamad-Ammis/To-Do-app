@@ -46,15 +46,15 @@ class EditTaskPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text(
-                'Add your task date , time , priority ',
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    color: Constans.kWhiteElementColor.withOpacity(.9),
-                    fontFamily: Constans.kFontFamily,
-                    fontSize: 16),
-              ),
-              EditTaskProperties(),
+              // Text(
+              //   'Add your task date , time , priority ',
+              //   overflow: TextOverflow.ellipsis,
+              //   style: TextStyle(
+              //       color: Constans.kWhiteElementColor.withOpacity(.9),
+              //       fontFamily: Constans.kFontFamily,
+              //       fontSize: 16),
+              // ),
+              // EditTaskProperties(),
               SizedBox(
                 height: 20,
               ),

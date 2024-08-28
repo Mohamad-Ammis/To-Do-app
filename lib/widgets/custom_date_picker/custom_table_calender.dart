@@ -27,7 +27,7 @@ class CustomTableCalender extends StatelessWidget {
                 formatButtonTextStyle:
                     TextStyle(fontFamily: Constans.kFontFamily),
                 headerMargin: EdgeInsets.only(bottom: 8)),
-            firstDay: DateTime.utc(2010, 10, 16),
+            firstDay: DateTime.now(),
             lastDay: DateTime.utc(2030, 3, 14),
             focusedDay: controller.selectedDate,
             selectedDayPredicate: (day) {
@@ -46,6 +46,7 @@ class CustomTableCalender extends StatelessWidget {
                   shape: BoxShape.circle, color: Colors.transparent),
               defaultTextStyle: TextStyle(color: Colors.white),
               weekendTextStyle: TextStyle(color: Colors.white),
+              disabledTextStyle: TextStyle(color: Colors.red),
               selectedTextStyle: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,

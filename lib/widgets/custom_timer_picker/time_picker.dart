@@ -82,11 +82,8 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                                   diameterRatio: 1.2,
                                   physics: FixedExtentScrollPhysics(),
                                   childDelegate: ListWheelChildBuilderDelegate(
-                                    childCount: 25,
+                                    childCount: 24,
                                     builder: (context, index) {
-                                      if (index == 0) {
-                                        return SizedBox();
-                                      }
                                       return HoursTile(
                                         hours: index,
                                         isSelected:

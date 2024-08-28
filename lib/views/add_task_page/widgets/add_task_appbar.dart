@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
@@ -7,6 +9,7 @@ import 'package:to_do_app/controllers/navigation_controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/helper/custom_toast_notification.dart';
 import 'package:to_do_app/model/task_model.dart';
+import 'package:to_do_app/services/local_notification.dart';
 import 'package:to_do_app/views/home_page/home_page.dart';
 
 class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -41,6 +44,11 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                             if (controller.setPriority &&
                                 controller.setDate &&
                                 controller.setTime) {
+                              LocalNotificationsService
+                                  .showScheduledNotification(
+                                      date: controller.selectedDate,
+                                      hour: controller.selectedHourIndex,
+                                      minute: controller.selectedMinuteIndex);
                               debugPrint('validate');
                               taskController.addTask(TaskModel(
                                   title: controller.taskTitle,

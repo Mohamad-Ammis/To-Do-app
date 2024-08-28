@@ -95,7 +95,7 @@ class TaskCard extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           model.delete();
-                          taskController.getToDoTasks();
+                          taskController.getAllTasks();
                           taskController.update();
                         },
                         child: Container(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/model/navbar_model.dart';
-import 'package:to_do_app/services/local_notification.dart';
+import 'package:to_do_app/services/local_notification_service.dart';
 import 'package:to_do_app/views/add_task_page/add_task_page.dart';
 import 'package:to_do_app/views/home_page/widgets/home_page_body.dart';
 

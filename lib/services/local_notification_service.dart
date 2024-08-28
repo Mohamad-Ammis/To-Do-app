@@ -84,6 +84,35 @@ class LocalNotificationsService {
     }
   }
 
+  static Future<void> showDailyScheduledNotification() async {
+    try {
+      NotificationDetails details = NotificationDetails(
+        android: AndroidNotificationDetails('id 3', 'Daily Schduled'),
+      );
+      tz.initializeTimeZones();
+      log(tz.local.name);
+      final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
+      tz.setLocalLocation(tz.getLocation(currentTimeZone));
+      log(tz.local.name);
+      final currentTime = tz.TZDateTime.now(tz.local);
+      final scheduledTime = tz.TZDateTime(tz.local, currentTime.year,
+          currentTime.month, currentTime.day, 21);
+      if (scheduledTime.isBefore(currentTime)) {
+        scheduledTime.add(Duration(days: 1));
+      }
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+          3,
+          'Finish Your Task',
+          'your task time is close to end , let\'s go and complete it',
+          scheduledTime,
+          details,
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime);
+    } on Exception catch (e) {
+      debugPrint('e: ${e}');
+    }
+  }
+
   static Future<void> cancelNotification(id) async {
     await flutterLocalNotificationsPlugin.cancel(id);
   }

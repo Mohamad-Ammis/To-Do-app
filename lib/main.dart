@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/model/task_model.dart';
-import 'package:to_do_app/services/local_notification.dart';
+import 'package:to_do_app/services/local_notification_service.dart';
 import 'package:to_do_app/services/work_manger_service.dart';
 import 'package:to_do_app/views/home_page/home_page.dart';
 

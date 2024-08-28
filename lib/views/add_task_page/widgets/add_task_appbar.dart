@@ -9,7 +9,7 @@ import 'package:to_do_app/controllers/navigation_controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/helper/custom_toast_notification.dart';
 import 'package:to_do_app/model/task_model.dart';
-import 'package:to_do_app/services/local_notification.dart';
+import 'package:to_do_app/services/local_notification_service.dart';
 import 'package:to_do_app/views/home_page/home_page.dart';
 
 class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {

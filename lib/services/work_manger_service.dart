@@ -1,6 +1,4 @@
-import 'dart:developer';
-
-import 'package:to_do_app/services/local_notification.dart';
+import 'package:to_do_app/services/local_notification_service.dart';
 import 'package:workmanager/workmanager.dart';
 
 class WorkMangerService {
@@ -8,7 +6,7 @@ class WorkMangerService {
 
   void registerTask() async {
     await Workmanager().registerPeriodicTask('id 1', 'show basic Notification',
-      frequency: Duration(minutes: 15));
+        frequency: Duration(days: 1));
   }
 
   Future<void> init() async {
@@ -31,7 +29,7 @@ class WorkMangerService {
     'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
 void executeTask() {
   Workmanager().executeTask((task, inputData) {
-    LocalNotificationsService.showBasicNotification();
+    LocalNotificationsService.showDailyScheduledNotification();
     return Future.value(true);
   });
 }

@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/add_task_controller.dart';
+import 'package:to_do_app/controllers/category_page_controller.dart';
 import 'package:to_do_app/controllers/form_controller.dart';
 import 'package:to_do_app/controllers/navigation_controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
@@ -16,6 +16,8 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
   });
   final taskController = Get.put(TaskController());
+  final CategoryPageController categoryPageController =
+      Get.put(CategoryPageController());
   final navigationController = Get.put(NavigationController());
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,15 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                       hour: controller.selectedHourIndex,
                                       minute: controller.selectedMinuteIndex);
                               debugPrint('validate');
+                              List<String> categories = [];
+                              for (int i = 0;
+                                  i <
+                                      categoryPageController
+                                          .selectedCategories.length;
+                                  i++) {
+                                categories.add(categoryPageController
+                                    .selectedCategories[i].title);
+                              }
                               taskController.addTask(TaskModel(
                                   title: controller.taskTitle,
                                   description: controller.taskDescription,
@@ -58,7 +69,8 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                   priority: controller.selectedPriority,
                                   color: Constans
                                       .kColors[controller.selectedColorIndex]
-                                      .value));
+                                      .value,
+                                  categories: categories));
                               navigationController.selectedIndex = 0;
                               controller.selectedDate = DateTime.now();
                               controller.selectedHourIndex = 12;

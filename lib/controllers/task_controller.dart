@@ -8,6 +8,7 @@ import 'package:to_do_app/model/task_model.dart';
 class TaskController extends GetxController {
   addTask(TaskModel model) async {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
+
     var status = await taskBox.add(model);
     debugPrint('status: ${status}');
   }
@@ -29,6 +30,9 @@ class TaskController extends GetxController {
 
     debugPrint('allTasks: $allTasks');
     displayTasksList = allTasks;
+    for (var i = 0; i < allTasks.length; i++) {
+      debugPrint("task categories${allTasks[i].categories}");
+    }
     return allTasks;
   }
 

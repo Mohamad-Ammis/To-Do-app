@@ -8,6 +8,7 @@ class Constans {
   static const String kFontFamily = 'Poppins';
   static const double kCardBorderRadius = 16.0;
   static const String kTasksBox = 'task_box';
+  static const String kCategoryBox = 'category_box';
   static const List<Color> kColors = [
     Color(0xFF1D1D1D),
     Color(0xffD32F2F), // Dark Red

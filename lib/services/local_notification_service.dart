@@ -87,7 +87,7 @@ class LocalNotificationsService {
   static Future<void> showDailyScheduledNotification() async {
     try {
       NotificationDetails details = NotificationDetails(
-        android: AndroidNotificationDetails('id 3', 'Daily Schduled'),
+        android: AndroidNotificationDetails('id 3', 'Daily Scheduled'),
       );
       tz.initializeTimeZones();
       log(tz.local.name);
@@ -95,21 +95,31 @@ class LocalNotificationsService {
       tz.setLocalLocation(tz.getLocation(currentTimeZone));
       log(tz.local.name);
       final currentTime = tz.TZDateTime.now(tz.local);
-      final scheduledTime = tz.TZDateTime(tz.local, currentTime.year,
-          currentTime.month, currentTime.day, 21);
+      var scheduledTime = tz.TZDateTime(
+          tz.local, currentTime.year, currentTime.month, currentTime.day, 21);
+
+      debugPrint('scheduledTime: ${scheduledTime}');
+      debugPrint('currentTime: ${currentTime}');
+
+      // إذا كان الوقت المجدول في الماضي، نضيف يوم واحد.
       if (scheduledTime.isBefore(currentTime)) {
-        scheduledTime.add(Duration(days: 1));
+        scheduledTime = scheduledTime.add(Duration(days: 1));
       }
+
+      debugPrint('Updated scheduledTime: ${scheduledTime}');
+
       await flutterLocalNotificationsPlugin.zonedSchedule(
-          3,
-          'Finish Your Task',
-          'your task time is close to end , let\'s go and complete it',
-          scheduledTime,
-          details,
-          uiLocalNotificationDateInterpretation:
-              UILocalNotificationDateInterpretation.absoluteTime);
+        3,
+        'Finish Your Task',
+        'your task time is close to end, let\'s go and complete it',
+        scheduledTime,
+        details,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time, // لضمان جدولة يومية
+      );
     } on Exception catch (e) {
-      debugPrint('e: ${e}');
+      debugPrint('Error: ${e}');
     }
   }
 

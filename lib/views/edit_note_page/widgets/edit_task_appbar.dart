@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
-import 'package:to_do_app/controllers/add_task_controller.dart';
 import 'package:to_do_app/controllers/edit_task_controller.dart';
-import 'package:to_do_app/controllers/form_controller.dart';
-import 'package:to_do_app/controllers/navigation_controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
-import 'package:to_do_app/helper/custom_toast_notification.dart';
 import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/views/home_page/home_page.dart';
 
@@ -22,7 +18,7 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Constans.kDarkBackgroundColor,
-      title: Text(
+      title: const Text(
         "Edit Task",
         style: TextStyle(
             fontFamily: Constans.kFontFamily,
@@ -47,7 +43,7 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                         ? controller.selectedDate.toString()
                         : model.endDate;
                     model.endTime =
-                        "${controller.selectedMinuteIndex != null && controller.selectedHourIndex != null ? ("${controller.selectedHourIndex}:${controller.selectedMinuteIndex}") : model.endTime}";
+                        controller.selectedMinuteIndex != null && controller.selectedHourIndex != null ? ("${controller.selectedHourIndex}:${controller.selectedMinuteIndex}") : model.endTime;
                     model.priority =
                         controller.selectedPriority ?? model.priority;
                     model.save();
@@ -58,11 +54,11 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                     controller.selectedPriority = null;
                     controller.taskTitle = null;
                     taskController.getAllTasks();
-                    Get.offAll(HomePage());
+                    Get.offAll(const HomePage());
                   },
                   icon: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 8),
-                    padding: EdgeInsets.all(8),
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -71,7 +67,7 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                       shape: BoxShape.circle,
                       color: Constans.kCardBackgroundColor,
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.done,
                       color: Constans.kWhiteElementColor,
                     ),
@@ -83,5 +79,5 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, 58);
+  Size get preferredSize => const Size(double.infinity, 58);
 }

@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:to_do_app/constans.dart';
+import 'package:to_do_app/controllers/category_page_controller.dart';
+import 'package:to_do_app/views/category_page/widgets/add_category_bottom_sheet.dart';
+import 'package:to_do_app/views/category_page/widgets/category_gridveiw.dart';
+
+
+class CategoryPage extends StatelessWidget {
+  CategoryPage({
+    super.key,
+  });
+
+  final controller = Get.put(CategoryPageController());
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Constans.kDarkBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: Constans.kDarkBackgroundColor,
+        title: Text(
+          'Categories',
+          style: TextStyle(
+              fontFamily: Constans.kFontFamily,
+              color: Constans.kWhiteElementColor),
+        ),
+        centerTitle: true,
+        scrolledUnderElevation: 0,
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 16),
+            decoration: BoxDecoration(
+              color: Constans.kCardBackgroundColor,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(blurRadius: 10, color: Colors.white.withOpacity(.3))
+              ],
+            ),
+            child: IconButton(
+                onPressed: () async {
+                  await Get.bottomSheet(AddCategoryBottomSheet(),
+                      enableDrag: false);
+                },
+                icon: Icon(
+                  Icons.add,
+                  color: Constans.kWhiteElementColor,
+                )),
+          )
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(child: CategoryGridview()),
+        ],
+      ),
+    );
+  }
+}
+

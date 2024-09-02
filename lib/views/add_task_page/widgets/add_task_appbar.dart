@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +24,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
         builder: (formController) {
           return AppBar(
             backgroundColor: Constans.kDarkBackgroundColor,
-            title: Text(
+            title: const Text(
               "Add Task",
               style: TextStyle(
                   fontFamily: Constans.kFontFamily,
@@ -71,7 +70,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                               controller.setPriority = false;
                               taskController.getAllTasks();
                               taskController.update();
-                              Get.offAll(() => HomePage());
+                              Get.offAll(() => const HomePage());
                             } else {
                               showErrorSnackBar('Error Happened',
                                       "Date,Time,Priority Fields are required")
@@ -85,8 +84,8 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                           }
                         },
                         icon: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 8),
-                          padding: EdgeInsets.all(8),
+                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
@@ -96,7 +95,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                             shape: BoxShape.circle,
                             color: Constans.kCardBackgroundColor,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.done,
                             color: Constans.kWhiteElementColor,
                           ),
@@ -108,6 +107,5 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, 58);
+  Size get preferredSize => const Size(double.infinity, 58);
 }

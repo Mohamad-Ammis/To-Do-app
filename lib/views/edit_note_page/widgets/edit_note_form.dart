@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
-import 'package:to_do_app/controllers/add_task_controller.dart';
 import 'package:to_do_app/controllers/edit_task_controller.dart';
-import 'package:to_do_app/controllers/form_controller.dart';
 import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/utils/app_images.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
@@ -35,7 +33,7 @@ class EditNoteForm extends StatelessWidget {
                       hintStyle: TextStyle(
                           color: Constans.kWhiteElementColor.withOpacity(.3),
                           fontFamily: Constans.kFontFamily),
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           color: Constans.kWhiteElementColor,
                           fontFamily: Constans.kFontFamily),
                       cursorColor: Constans.kWhiteElementColor,
@@ -62,7 +60,7 @@ class EditNoteForm extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Stack(
@@ -77,7 +75,7 @@ class EditNoteForm extends StatelessWidget {
                       hintStyle: TextStyle(
                           color: Constans.kWhiteElementColor.withOpacity(.3),
                           fontFamily: Constans.kFontFamily),
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           color: Constans.kWhiteElementColor,
                           fontFamily: Constans.kFontFamily),
                       cursorColor: Constans.kWhiteElementColor,

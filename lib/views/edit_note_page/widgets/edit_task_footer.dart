@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/constans.dart';
-import 'package:to_do_app/controllers/add_task_controller.dart';
 import 'package:to_do_app/controllers/edit_task_controller.dart';
 import 'package:to_do_app/model/task_model.dart';
 

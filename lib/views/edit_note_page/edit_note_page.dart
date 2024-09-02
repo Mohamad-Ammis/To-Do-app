@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/model/task_model.dart';
-import 'package:to_do_app/views/add_task_page/widgets/add_task_appbar.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_note_form.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_task_appbar.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_task_footer.dart';
-import 'package:to_do_app/views/edit_note_page/widgets/edit_task_properties.dart';
 import 'package:to_do_app/widgets/color_List_view.dart';
 
 class EditTaskPage extends StatelessWidget {

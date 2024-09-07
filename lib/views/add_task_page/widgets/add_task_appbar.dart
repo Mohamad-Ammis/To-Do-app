@@ -71,7 +71,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                   color: Constans
                                       .kColors[controller.selectedColorIndex]
                                       .value,
-                                  categories: categories));
+                                  categories: categories, isCompleted: false));
                               navigationController.selectedIndex = 0;
                               controller.selectedDate = DateTime.now();
                               controller.selectedHourIndex = 12;

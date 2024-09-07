@@ -23,6 +23,14 @@ class HomePageController extends GetxController {
           return taskController.displayTasksList;
         }),
     FilterModel(
+        title: 'Completed',
+        onTap: () {
+          final taskController = Get.put(TaskController());
+          taskController.displayTasksList = taskController.getCompletedTasks();
+          taskController.update();
+          return taskController.displayTasksList;
+        }),
+    FilterModel(
         title: 'missing',
         onTap: () {
           final taskController = Get.put(TaskController());

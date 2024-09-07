@@ -42,7 +42,8 @@ class TaskController extends GetxController {
     tasks = taskBox.values.where((task) {
       DateTime taskDate = DateTime.parse(task.endDate);
       return (taskDate.isAfter(today) || taskDate.isAtSameMomentAs(today)) &&
-          task.title.isNotEmpty;
+          task.title.isNotEmpty &&
+          task.isCompleted == false;
     }).toList();
 
     tasks.sort((a, b) {
@@ -179,6 +180,22 @@ class TaskController extends GetxController {
     debugPrint('Low Priority Tasks: $lowPriorityTasks');
     displayTasksList = lowPriorityTasks;
     return lowPriorityTasks;
+  }
+
+  List<TaskModel> getCompletedTasks() {
+    var taskbox = Hive.box<TaskModel>(Constans.kTasksBox);
+    List<TaskModel> completedTasks = taskbox.values.where((task) {
+      return task.isCompleted == true;
+    }).toList();
+    completedTasks.sort((a, b) {
+      DateTime dateA = DateTime.parse(a.endDate);
+      DateTime dateB = DateTime.parse(b.endDate);
+      return dateA.compareTo(dateB);
+    });
+
+    debugPrint('completed Tasks: $completedTasks');
+    displayTasksList = completedTasks;
+    return completedTasks;
   }
 
   @override

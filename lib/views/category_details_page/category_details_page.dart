@@ -10,7 +10,8 @@ class CategoryDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar:  AppBar(
+      appBar: AppBar(
+        foregroundColor: Colors.white,
         backgroundColor: Constans.kDarkBackgroundColor,
         title: Text(
           '$title Tasks',

@@ -18,6 +18,8 @@ class TaskModel extends HiveObject {
   int color;
   @HiveField(6)
   List<String> categories;
+  @HiveField(7)
+  bool isCompleted = false;
 
   TaskModel(
       {required this.title,
@@ -26,5 +28,6 @@ class TaskModel extends HiveObject {
       required this.endTime,
       required this.priority,
       required this.color,
+      required this.isCompleted,
       required this.categories});
 }

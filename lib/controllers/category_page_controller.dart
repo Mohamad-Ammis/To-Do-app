@@ -66,4 +66,9 @@ class CategoryPageController extends GetxController {
     categoryTasks = tasksWithCategory;
     return tasksWithCategory;
   }
+
+  // void deleteCategory(CategoryModel model) {
+  //   var categoryBox = Hive.box<CategoryModel>(Constans.kCategoryBox);
+  //   categoryBox.delete(model);
+  // }
 }

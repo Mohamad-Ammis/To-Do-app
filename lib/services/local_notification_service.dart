@@ -47,7 +47,10 @@ class LocalNotificationsService {
   }
 
   static Future<void> showScheduledNotification(
-      {required DateTime date, required hour, required minute}) async {
+      {required String title,
+      required DateTime date,
+      required hour,
+      required minute}) async {
     try {
       NotificationDetails details = NotificationDetails(
         android: AndroidNotificationDetails('id 2', 'Schduled'),
@@ -72,8 +75,8 @@ class LocalNotificationsService {
       }
       await flutterLocalNotificationsPlugin.zonedSchedule(
           2,
-          'Finish Your Task',
-          'your task time is close to end , let\'s go and complete it',
+          '$title ',
+          'your task time is end , let\'s finish another one',
           tz.TZDateTime(
               tz.local, date.year, date.month, date.day, hour, minute),
           details,
@@ -87,7 +90,7 @@ class LocalNotificationsService {
   static Future<void> showDailyScheduledNotification() async {
     try {
       NotificationDetails details = NotificationDetails(
-        android: AndroidNotificationDetails('id 3', 'Daily Scheduled'),
+        android: AndroidNotificationDetails('id 3', 'Daily'),
       );
       tz.initializeTimeZones();
       log(tz.local.name);
@@ -101,7 +104,6 @@ class LocalNotificationsService {
       debugPrint('scheduledTime: ${scheduledTime}');
       debugPrint('currentTime: ${currentTime}');
 
-      // إذا كان الوقت المجدول في الماضي، نضيف يوم واحد.
       if (scheduledTime.isBefore(currentTime)) {
         scheduledTime = scheduledTime.add(Duration(days: 1));
       }
@@ -128,8 +130,6 @@ class LocalNotificationsService {
   }
 }
 
-// الدالة التي يجب أن تكون في مستوى أعلى
 void backgroundHandler(NotificationResponse details) {
-  // معالجة التنبيه عند الاستلام في الخلفية
   debugPrint('Notification received in background: ${details.payload}');
 }

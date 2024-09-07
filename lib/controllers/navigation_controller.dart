@@ -10,7 +10,6 @@ class NavigationController extends GetxController {
     NavbarModel(icon: Icons.home, title: 'Home'),
     NavbarModel(icon: Icons.calendar_month, title: 'Calender'),
     NavbarModel(icon: Icons.add_box_rounded, title: 'new'),
-    NavbarModel(icon: Icons.notifications_none, title: 'notification'),
     NavbarModel(icon: Icons.person, title: 'profile'),
   ];
   int selectedIndex = 0;
@@ -18,9 +17,6 @@ class NavigationController extends GetxController {
     const HomePageBody(),
     CategoryPage(),
     const AddTaskPage(),
-    Container(
-      color: Colors.black,
-    ),
     Container(
       color: Colors.green,
     )

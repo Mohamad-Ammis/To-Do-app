@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
+import 'package:to_do_app/controllers/category_page_controller.dart';
 import 'package:to_do_app/controllers/edit_task_controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/model/task_model.dart';
@@ -13,6 +14,8 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
   });
   final taskController = Get.put(TaskController());
   final controller = Get.put(EditTaskController());
+  final CategoryPageController categoryPageController =
+      Get.put(CategoryPageController());
   final TaskModel model;
   @override
   Widget build(BuildContext context) {
@@ -42,10 +45,20 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                     model.endDate = controller.selectedDate != null
                         ? controller.selectedDate.toString()
                         : model.endDate;
-                    model.endTime =
-                        controller.selectedMinuteIndex != null && controller.selectedHourIndex != null ? ("${controller.selectedHourIndex}:${controller.selectedMinuteIndex}") : model.endTime;
+                    model.endTime = controller.selectedMinuteIndex != null &&
+                            controller.selectedHourIndex != null
+                        ? ("${controller.selectedHourIndex}:${controller.selectedMinuteIndex}")
+                        : model.endTime;
                     model.priority =
                         controller.selectedPriority ?? model.priority;
+                    // List<String> categories = [];
+                    // for (var i = 0;
+                    //     i < categoryPageController.selectedCategories.length;
+                    //     i++) {
+                    //   categories.add(
+                    //       categoryPageController.selectedCategories[i].title);
+                    // }
+                    // model.categories = categories;
                     model.save();
                     controller.selectedColorIndex = null;
                     controller.selectedDate = null;

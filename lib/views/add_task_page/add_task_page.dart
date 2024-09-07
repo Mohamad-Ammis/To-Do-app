@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/category_page_controller.dart';
+import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/views/add_task_page/widgets/add_task_appbar.dart';
 import 'package:to_do_app/views/add_task_page/widgets/add_task_form.dart';
 import 'package:to_do_app/views/add_task_page/widgets/task_info_footer.dart';
@@ -59,49 +60,10 @@ class AddTaskPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              GetBuilder<CategoryPageController>(
-                  init: CategoryPageController(),
-                  builder: (controller) {
-                    return Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Select Your Task Categoty ',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Constans.kWhiteElementColor
-                                      .withOpacity(.9),
-                                  fontFamily: Constans.kFontFamily,
-                                  fontSize: 16),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  controller.showCategories =
-                                      !controller.showCategories;
-                                  controller.update();
-                                },
-                                icon: Icon(
-                                  controller.showCategories
-                                      ? Icons.arrow_circle_up_rounded
-                                      : Icons.arrow_drop_down_circle,
-                                  color: Colors.white,
-                                ))
-                          ],
-                        ),
-                        if (controller.showCategories)
-                          SizedBox(
-                            height: 20,
-                          ),
-                        if (controller.showCategories)
-                          Container(child: SelectCategoryGrid()),
-                        SizedBox(
-                          height: 85,
-                        )
-                      ],
-                    );
-                  })
+              TaskCategorySection(
+                isEditPage: false,
+                model: null,
+              )
             ],
           ),
         ),
@@ -110,11 +72,72 @@ class AddTaskPage extends StatelessWidget {
   }
 }
 
+class TaskCategorySection extends StatelessWidget {
+  const TaskCategorySection({
+    super.key,
+    required this.isEditPage,
+    required this.model,
+  });
+  final bool isEditPage;
+  final TaskModel? model;
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<CategoryPageController>(
+        init: CategoryPageController(),
+        builder: (controller) {
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Select Your Task Categoty ',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Constans.kWhiteElementColor.withOpacity(.9),
+                        fontFamily: Constans.kFontFamily,
+                        fontSize: 16),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        controller.showCategories = !controller.showCategories;
+                        controller.update();
+                      },
+                      icon: Icon(
+                        controller.showCategories
+                            ? Icons.arrow_circle_up_rounded
+                            : Icons.arrow_drop_down_circle,
+                        color: Colors.white,
+                      ))
+                ],
+              ),
+              if (controller.showCategories)
+                SizedBox(
+                  height: 20,
+                ),
+              if (controller.showCategories)
+                Container(
+                    child: SelectCategoryGrid(
+                  isEditPage: isEditPage,
+                  model: model,
+                )),
+              SizedBox(
+                height: 85,
+              )
+            ],
+          );
+        });
+  }
+}
+
 class SelectCategoryGrid extends StatelessWidget {
   const SelectCategoryGrid({
     super.key,
+    required this.isEditPage,
+    required this.model,
   });
-
+  final bool isEditPage;
+  final TaskModel? model;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -130,13 +153,23 @@ class SelectCategoryGrid extends StatelessWidget {
               crossAxisSpacing: 10,
             ),
             itemBuilder: (context, index) {
-              final isSelected = controller.selectedCategories
-                  .contains(controller.categoriesList[index]);
-
+              bool isSelected;
+              if (isEditPage) {
+                isSelected = model!.categories
+                    .contains(controller.categoriesList[index].title);
+                // controller.selectedCategories
+                // .add(controller.categoriesList[index].title);
+              } else {
+                isSelected = controller.selectedCategories
+                    .contains(controller.categoriesList[index]);
+              }
               return GestureDetector(
                 onTap: () {
                   controller.toggleCategorySelection(
                       controller.categoriesList[index]);
+                      // if(isEditPage){
+                        
+                      // }
                 },
                 child: Stack(
                   children: [

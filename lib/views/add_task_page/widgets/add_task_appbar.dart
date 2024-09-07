@@ -47,6 +47,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                 controller.setTime) {
                               LocalNotificationsService
                                   .showScheduledNotification(
+                                      title: controller.taskTitle,
                                       date: controller.selectedDate,
                                       hour: controller.selectedHourIndex,
                                       minute: controller.selectedMinuteIndex);
@@ -80,6 +81,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                               controller.setDate = false;
                               controller.setTime = false;
                               controller.setPriority = false;
+                              categoryPageController.selectedCategories.clear();
                               taskController.getAllTasks();
                               taskController.update();
                               Get.offAll(() => const HomePage());

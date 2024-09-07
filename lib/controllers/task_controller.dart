@@ -3,14 +3,46 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/home_page.controller.dart';
+import 'package:to_do_app/helper/custom_toast_notification.dart';
 import 'package:to_do_app/model/task_model.dart';
 
 class TaskController extends GetxController {
-  addTask(TaskModel model) async {
+  addTask(TaskModel model, context) async {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
+    bool taskExist = checkIfTaskExist(model);
+    if (taskExist) {
+      showInfoSnackBar('Sorry', 'You already have task match this informatiom')
+          .show(context);
+    } else {
+      await taskBox.add(model);
+    }
+  }
 
-    var status = await taskBox.add(model);
-    debugPrint('status: ${status}');
+  bool checkIfTaskExist(TaskModel model) {
+    var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
+    List<TaskModel> tasks = taskBox.values.toList();
+
+    for (var task in tasks) {
+      debugPrint(
+          'Comparing with task: ${task.title}, ${task.endDate}, ${task.endTime}, ${task.priority}');
+      debugPrint(
+          'your task: ${model.title}, ${model.endDate}, ${model.endTime}, ${model.priority}');
+
+      DateTime taskEndDate = DateTime.parse(task.endDate);
+      DateTime modelEndDate = DateTime.parse(model.endDate);
+
+      if (task.title == model.title &&
+          taskEndDate.year == modelEndDate.year &&
+          taskEndDate.month == modelEndDate.month &&
+          taskEndDate.day == modelEndDate.day &&
+          task.endTime == model.endTime &&
+          task.priority == model.priority) {
+        debugPrint('Task already exists!');
+        return true; 
+      }
+    }
+    debugPrint('Task does not exist.');
+    return false; 
   }
 
   List<TaskModel> displayTasksList = [];
@@ -200,7 +232,6 @@ class TaskController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     deleteTasksWithEmptyTitle();
     displayTasksList = getAllTasks();

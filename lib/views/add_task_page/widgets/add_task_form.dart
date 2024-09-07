@@ -7,7 +7,7 @@ import 'package:to_do_app/utils/app_images.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
 
 class AddTaskForm extends StatelessWidget {
-   AddTaskForm({
+  AddTaskForm({
     super.key,
   });
   final controller = Get.put(AddTaskController());
@@ -41,6 +41,7 @@ class AddTaskForm extends StatelessWidget {
                       fillColor: Constans.kCardBackgroundColor,
                       focusedBorderColor: Constans.kWhiteElementColor,
                       enabledBorderColor: Colors.transparent,
+                      maxLines: 1,
                     ),
                     Positioned.fill(
                       child: Align(

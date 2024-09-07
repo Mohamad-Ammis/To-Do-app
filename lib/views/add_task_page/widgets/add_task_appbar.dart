@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
@@ -61,7 +63,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                 categories.add(categoryPageController
                                     .selectedCategories[i].title);
                               }
-                              taskController.addTask(TaskModel(
+                              TaskModel model = TaskModel(
                                   title: controller.taskTitle,
                                   description: controller.taskDescription,
                                   endDate: controller.selectedDate.toString(),
@@ -71,7 +73,11 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                   color: Constans
                                       .kColors[controller.selectedColorIndex]
                                       .value,
-                                  categories: categories, isCompleted: false));
+                                  categories: categories,
+                                  isCompleted: false);
+                                taskController.addTask(model, context);
+                              
+                              log("task exist ${taskController.checkIfTaskExist(model)}");
                               navigationController.selectedIndex = 0;
                               controller.selectedDate = DateTime.now();
                               controller.selectedHourIndex = 12;

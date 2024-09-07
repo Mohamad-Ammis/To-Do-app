@@ -56,16 +56,8 @@ class LocalNotificationsService {
         android: AndroidNotificationDetails('id 2', 'Schduled'),
       );
       tz.initializeTimeZones();
-      log(tz.local.name);
-      log(tz.TZDateTime.now(tz.local).hour.toString());
       final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
       tz.setLocalLocation(tz.getLocation(currentTimeZone));
-      log(tz.local.name);
-      log(date.year.toString());
-      log(date.month.toString());
-      log(date.day.toString());
-      log(hour.toString());
-      log(minute.toString());
       final tz.TZDateTime scheduledDate = tz.TZDateTime(
           tz.local, date.year, date.month, date.day, hour, minute);
 

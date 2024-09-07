@@ -19,7 +19,7 @@ class TaskModel extends HiveObject {
   @HiveField(6)
   List<String> categories;
   @HiveField(7)
-  bool isCompleted = false;
+  bool isCompleted;
 
   TaskModel(
       {required this.title,
@@ -28,6 +28,34 @@ class TaskModel extends HiveObject {
       required this.endTime,
       required this.priority,
       required this.color,
-      required this.isCompleted,
+      this.isCompleted = false,
       required this.categories});
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final TaskModel otherTask = other as TaskModel;
+    return title == otherTask.title &&
+        description == otherTask.description &&
+        endDate == otherTask.endDate &&
+        endTime == otherTask.endTime &&
+        priority == otherTask.priority &&
+        color == otherTask.color &&
+        isCompleted == otherTask.isCompleted &&
+        categories.length == otherTask.categories.length &&
+        categories.every((cat) => otherTask.categories.contains(cat));
+  }
+
+  @override
+  int get hashCode {
+    return title.hashCode ^
+        description.hashCode ^
+        endDate.hashCode ^
+        endTime.hashCode ^
+        priority.hashCode ^
+        color.hashCode ^
+        isCompleted.hashCode ^
+        categories.hashCode;
+  }
 }

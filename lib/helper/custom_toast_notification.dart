@@ -23,6 +23,7 @@ ElegantNotification showSuccesSnackBar(title, message, {context}) {
 
 ElegantNotification showErrorSnackBar(title, message) {
   return ElegantNotification.error(
+    background: Constans.kCardBackgroundColor,
     animationCurve: Curves.bounceInOut,
     borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(8), topRight: Radius.circular(8)),
@@ -31,15 +32,19 @@ ElegantNotification showErrorSnackBar(title, message) {
     animation: AnimationType.fromTop,
     title: Text(
       title,
-      style: const TextStyle(fontFamily: Constans.kFontFamily),
+      style: const TextStyle(
+          fontFamily: Constans.kFontFamily, color: Constans.kWhiteElementColor),
     ),
-    description:
-        Text(message, style: const TextStyle(fontFamily: Constans.kFontFamily)),
+    description: Text(message,
+        style: const TextStyle(
+            fontFamily: Constans.kFontFamily,
+            color: Constans.kWhiteElementColor)),
   );
 }
 
 ElegantNotification showInfoSnackBar(title, message) {
   return ElegantNotification.info(
+    background: Constans.kCardBackgroundColor,
     animationCurve: Curves.bounceInOut,
     borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(8), topRight: Radius.circular(8)),
@@ -48,9 +53,12 @@ ElegantNotification showInfoSnackBar(title, message) {
     animation: AnimationType.fromTop,
     title: Text(
       title,
-      style: const TextStyle(fontFamily: Constans.kFontFamily),
+      style: const TextStyle(
+          fontFamily: Constans.kFontFamily, color: Constans.kWhiteElementColor),
     ),
-    description:
-        Text(message, style: const TextStyle(fontFamily: Constans.kFontFamily)),
+    description: Text(message,
+        style: const TextStyle(
+            fontFamily: Constans.kFontFamily,
+            color: Constans.kWhiteElementColor)),
   );
 }

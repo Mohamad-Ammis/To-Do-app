@@ -6,9 +6,9 @@ import 'package:to_do_app/views/category_page/widgets/category_card.dart';
 
 class CategoryGridview extends StatelessWidget {
   const CategoryGridview({
-    super.key,
+    super.key, required this.showDeleteIcon,
   });
-
+  final bool showDeleteIcon;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CategoryPageController>(
@@ -33,6 +33,7 @@ class CategoryGridview extends StatelessWidget {
                     },
                     child: CategoryCard(
                       model: controller.categoriesList[index],
+                      showDeleteIcon: showDeleteIcon,
                     ),
                   );
                 }),

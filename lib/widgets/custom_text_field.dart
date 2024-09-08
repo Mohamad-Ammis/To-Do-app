@@ -18,7 +18,8 @@ class CustomTextField extends StatelessWidget {
     this.hintText,
     this.hintStyle,
     this.prefixIcon,
-    this.maxLines, this.initialValue,
+    this.maxLines,
+    this.initialValue,
   });
   final TextStyle textStyle;
   final Color cursorColor;
@@ -42,7 +43,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       onChanged: onChanged,
       validator: (value) {
-        if (value!.isEmpty) {
+        if (value!.trim().isEmpty) {
           return 'required field';
         } else {
           return null;

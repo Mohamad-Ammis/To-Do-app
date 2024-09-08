@@ -120,6 +120,7 @@ class TaskCategorySection extends StatelessWidget {
                     child: SelectCategoryGrid(
                   isEditPage: isEditPage,
                   model: model,
+                  showDeleteIcon: false,
                 )),
               SizedBox(
                 height: 85,
@@ -135,9 +136,11 @@ class SelectCategoryGrid extends StatelessWidget {
     super.key,
     required this.isEditPage,
     required this.model,
+    required this.showDeleteIcon,
   });
   final bool isEditPage;
   final TaskModel? model;
+  final bool showDeleteIcon;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -167,30 +170,32 @@ class SelectCategoryGrid extends StatelessWidget {
                 onTap: () {
                   controller.toggleCategorySelection(
                       controller.categoriesList[index]);
-                      // if(isEditPage){
-                        
-                      // }
+                  // if(isEditPage){
+
+                  // }
                 },
                 child: Stack(
                   children: [
                     SizedBox(
                       width: double.infinity,
                       child: CategoryCard(
+                        showDeleteIcon:showDeleteIcon,
                         model: controller.categoriesList[index],
                       ),
                     ),
-                    Positioned(
-                      top: 4,
-                      left: 4,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white)),
-                        child: Icon(
-                          Icons.done,
-                          color: isSelected ? Colors.white : Colors.transparent,
+                      Positioned(
+                        top: 4,
+                        left: 4,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white)),
+                          child: Icon(
+                            Icons.done,
+                            color:
+                                isSelected ? Colors.white : Colors.transparent,
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               );

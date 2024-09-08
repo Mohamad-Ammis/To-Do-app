@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
-import 'package:to_do_app/controllers/category_page_controller.dart';
 import 'package:to_do_app/model/task_model.dart';
-import 'package:to_do_app/views/add_task_page/add_task_page.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_note_form.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_task_appbar.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_task_footer.dart';

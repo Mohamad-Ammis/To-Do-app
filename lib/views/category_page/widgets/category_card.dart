@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/category_page_controller.dart';
+import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/model/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
   CategoryCard({
     super.key,
     required this.model,
+    required this.showDeleteIcon,
   });
-
+  final bool showDeleteIcon;
   final CategoryModel model;
   final CategoryPageController controller = Get.put(CategoryPageController());
+  final taskController = Get.put(TaskController());
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -40,29 +43,33 @@ class CategoryCard extends StatelessWidget {
             ],
           ),
         ),
-        Positioned.fill(
-            child: Align(
-          alignment: Alignment.topRight,
-          child: GestureDetector(
-            onTap: () async {
-              await model.delete();
-              controller.getCategories();
-              controller.update();
-            },
-            child: Container(
-              padding: EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                  color: Constans.kWhiteElementColor.withOpacity(.9),
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(Constans.kCardBorderRadius),
-                      bottomLeft: Radius.circular(Constans.kCardBorderRadius))),
-              child: Icon(
-                Icons.delete_forever,
-                size: 20,
+        if (showDeleteIcon)
+          Positioned.fill(
+              child: Align(
+            alignment: Alignment.topRight,
+            child: GestureDetector(
+              onTap: () async {
+                controller.deleteTasksWithCategory(model.title);
+                await model.delete();
+                controller.getCategories();
+                controller.update();
+                taskController.getAllTasks();
+              },
+              child: Container(
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                    color: Constans.kWhiteElementColor.withOpacity(.9),
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(Constans.kCardBorderRadius),
+                        bottomLeft:
+                            Radius.circular(Constans.kCardBorderRadius))),
+                child: Icon(
+                  Icons.delete_forever,
+                  size: 20,
+                ),
               ),
             ),
-          ),
-        ))
+          ))
       ],
     );
   }

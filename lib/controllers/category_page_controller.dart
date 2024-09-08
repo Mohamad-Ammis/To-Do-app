@@ -26,13 +26,32 @@ class CategoryPageController extends GetxController {
 
   void addCategory() {
     var categoryBox = Hive.box<CategoryModel>(Constans.kCategoryBox);
-    categoryBox.add(CategoryModel(
-        title: title,
-        color: Constans.kColors[selectedColorIndex].value,
-        icon: selectedIcon.codePoint));
+    if (title.trim().isNotEmpty) {
+      if (!checkIfCategoryExist(title)) {
+        categoryBox.add(CategoryModel(
+            title: title,
+            color: Constans.kColors[selectedColorIndex].value,
+            icon: selectedIcon.codePoint));
+      } else {
+        log('cannot add category already exist');
+      }
+    } else {
+      log('cannot add category with empty title');
+    }
     selectedColorIndex = 0;
     selectedIcon = Icons.image_search_outlined;
     title = '';
+  }
+
+  bool checkIfCategoryExist(String title) {
+    bool isExist = false;
+    var categoryBox = Hive.box<CategoryModel>(Constans.kCategoryBox);
+    categoryBox.values.forEach((category) {
+      if (category.title == title) {
+        isExist = true;
+      }
+    });
+    return isExist;
   }
 
   List<CategoryModel> categoriesList = [];
@@ -40,6 +59,22 @@ class CategoryPageController extends GetxController {
     var categoryBox = Hive.box<CategoryModel>(Constans.kCategoryBox);
     categoriesList = categoryBox.values.toList();
     debugPrint('categoriesList: ${categoriesList}');
+  }
+
+  deleteTasksWithCategory(String category) {
+    var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
+    for (var task in taskBox.values) {
+      log('task title : ${task.title}');
+      log('task categories before delete : ${task.categories}');
+      if (task.categories.length == 1 && task.categories[0] == category) {
+        task.delete();
+        log('task deleted');
+      } else if (task.categories.contains(category)) {
+        task.categories.remove(category);
+        log('task categories after delete : ${task.categories}');
+        task.save();
+      }
+    }
   }
 
   @override

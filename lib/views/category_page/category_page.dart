@@ -5,7 +5,6 @@ import 'package:to_do_app/controllers/category_page_controller.dart';
 import 'package:to_do_app/views/category_page/widgets/add_category_bottom_sheet.dart';
 import 'package:to_do_app/views/category_page/widgets/category_gridveiw.dart';
 
-
 class CategoryPage extends StatelessWidget {
   CategoryPage({
     super.key,
@@ -50,10 +49,12 @@ class CategoryPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(child: CategoryGridview()),
+          Expanded(
+              child: CategoryGridview(
+            showDeleteIcon: true,
+          )),
         ],
       ),
     );
   }
 }
-

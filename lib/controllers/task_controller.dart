@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -38,11 +40,11 @@ class TaskController extends GetxController {
           task.endTime == model.endTime &&
           task.priority == model.priority) {
         debugPrint('Task already exists!');
-        return true; 
+        return true;
       }
     }
     debugPrint('Task does not exist.');
-    return false; 
+    return false;
   }
 
   List<TaskModel> displayTasksList = [];
@@ -147,13 +149,11 @@ class TaskController extends GetxController {
   deleteTasksWithEmptyTitle() {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
 
-    // احصل على قائمة بالمهام التي عنوانها فارغ
     var tasksWithEmptyTitle =
         taskBox.values.where((task) => task.title.isEmpty).toList();
 
-    // احذف كل مهمة ذات عنوان فارغ
     for (var task in tasksWithEmptyTitle) {
-      task.delete(); // يحذف المهمة من Hive
+      task.delete();
     }
 
     debugPrint(
@@ -229,6 +229,7 @@ class TaskController extends GetxController {
     displayTasksList = completedTasks;
     return completedTasks;
   }
+
 
   @override
   void onInit() {

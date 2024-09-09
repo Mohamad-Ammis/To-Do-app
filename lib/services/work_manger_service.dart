@@ -5,8 +5,9 @@ class WorkMangerService {
   //init service
 
   void registerTask() async {
-    await Workmanager().registerPeriodicTask('id 1', 'show Scheduled Notification',
-        frequency:const  Duration(days: 1));
+    await Workmanager().registerPeriodicTask(
+        'id 1', 'show Scheduled Notification',
+        frequency: const Duration(days: 1));
   }
 
   Future<void> init() async {

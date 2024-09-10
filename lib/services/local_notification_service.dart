@@ -90,8 +90,8 @@ class LocalNotificationsService {
       tz.setLocalLocation(tz.getLocation(currentTimeZone));
       log(tz.local.name);
       final currentTime = tz.TZDateTime.now(tz.local);
-      var scheduledTime = tz.TZDateTime(
-          tz.local, currentTime.year, currentTime.month, currentTime.day, 21);
+      var scheduledTime = tz.TZDateTime(tz.local, currentTime.year,
+          currentTime.month, currentTime.day, 21, 30);
 
       debugPrint('scheduledTime: ${scheduledTime}');
       debugPrint('currentTime: ${currentTime}');
@@ -104,13 +104,13 @@ class LocalNotificationsService {
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
         3,
-        'Finish Your Task',
-        'your task time is close to end, let\'s go and complete it',
+        'Have a productive dat',
+        'write your task and work on it to have a productive day',
         scheduledTime,
         details,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time, // لضمان جدولة يومية
+        matchDateTimeComponents: DateTimeComponents.time,
       );
     } on Exception catch (e) {
       debugPrint('Error: ${e}');

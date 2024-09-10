@@ -29,8 +29,8 @@ class WorkMangerService {
 @pragma(
     'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
 void executeTask() {
-  Workmanager().executeTask((task, inputData) {
-    LocalNotificationsService.showDailyScheduledNotification();
+  Workmanager().executeTask((task, inputData) async {
+    await LocalNotificationsService.showDailyScheduledNotification();
     return Future.value(true);
   });
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/profile_page_controller.dart';
 import 'package:to_do_app/services/image_picker_service.dart';
+import 'package:to_do_app/utils/app_images.dart';
 
 class ImageAndTasksSection extends StatefulWidget {
   const ImageAndTasksSection({super.key});
@@ -25,7 +26,7 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircleAvatar(
-                  radius: 50, child:  CircularProgressIndicator());
+                  radius: 50, child: CircularProgressIndicator());
             }
 
             String? imagePath = snapshot.data;
@@ -38,11 +39,11 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
                 }
               },
               child: CircleAvatar(
+                backgroundColor: Constans.kWhiteElementColor,
                 radius: 50,
                 backgroundImage: (imagePath != null && imagePath.isNotEmpty)
                     ? FileImage(File(imagePath))
-                    : const NetworkImage('https://your-profile-image-url.com')
-                        as ImageProvider,
+                    : AssetImage(Assets.imagesPers),
               ),
             );
           },

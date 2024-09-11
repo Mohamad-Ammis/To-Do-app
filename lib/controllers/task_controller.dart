@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -63,6 +62,7 @@ class TaskController extends GetxController {
 
     debugPrint('allTasks: $allTasks');
     displayTasksList = allTasks;
+    update();
     for (var i = 0; i < allTasks.length; i++) {
       debugPrint("task categories${allTasks[i].categories}");
     }
@@ -229,11 +229,11 @@ class TaskController extends GetxController {
     return completedTasks;
   }
 
-
   @override
   void onInit() {
     super.onInit();
     deleteTasksWithEmptyTitle();
     displayTasksList = getAllTasks();
+    update();
   }
 }

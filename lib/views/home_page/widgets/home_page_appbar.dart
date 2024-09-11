@@ -1,12 +1,27 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/home_page.controller.dart';
+import 'package:to_do_app/services/image_picker_service.dart';
+import 'package:to_do_app/utils/app_images.dart';
 
-class HomePageAppbar extends StatelessWidget implements PreferredSizeWidget {
+class HomePageAppbar extends StatefulWidget implements PreferredSizeWidget {
   const HomePageAppbar({
     super.key,
   });
+
+  @override
+  State<HomePageAppbar> createState() => _HomePageAppbarState();
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size(double.infinity, 58);
+}
+
+class _HomePageAppbarState extends State<HomePageAppbar> {
+  final ImagePickerService _imagePickerService = ImagePickerService();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +55,35 @@ class HomePageAppbar extends StatelessWidget implements PreferredSizeWidget {
           ),
           centerTitle: true,
           actions: [
-            CircleAvatar(
-              maxRadius: 42,
+            FutureBuilder<String?>(
+              future: _imagePickerService.loadImage(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircleAvatar(
+                      radius: 30, child: CircularProgressIndicator());
+                }
+
+                String? imagePath = snapshot.data;
+                return GestureDetector(
+                  onTap: () async {
+                    String? newImagePath =
+                        await _imagePickerService.pickImageFromGallery();
+                    if (newImagePath != null) {
+                      setState(() {});
+                    }
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: Constans.kWhiteElementColor,
+                    radius: 30,
+                    backgroundImage: (imagePath != null && imagePath.isNotEmpty)
+                        ? FileImage(File(imagePath))
+                        : AssetImage(Assets.imagesPers),
+                  ),
+                );
+              },
+            ),
+            SizedBox(
+              width: 10,
             )
           ],
           backgroundColor: Constans.kDarkBackgroundColor,
@@ -49,8 +91,4 @@ class HomePageAppbar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, 58);
 }

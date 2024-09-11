@@ -1,3 +1,7 @@
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:to_do_app/constans.dart';
+import 'package:to_do_app/model/category_model.dart';
+import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/services/local_notification_service.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -26,11 +30,19 @@ class WorkMangerService {
   }
 }
 
-@pragma(
-    'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
+@pragma('vm:entry-point') 
 void executeTask() {
   Workmanager().executeTask((task, inputData) async {
+    // تهيئة Hive وفتح الصناديق المطلوبة هنا
+    await Hive.initFlutter();
+    Hive.registerAdapter<TaskModel>(TaskModelAdapter());
+    await Hive.openBox<TaskModel>(Constans.kTasksBox);
+    Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
+    await Hive.openBox<CategoryModel>(Constans.kCategoryBox);
+    
+    // الآن يمكنك عرض الإشعار
     await LocalNotificationsService.showDailyScheduledNotification();
+    
     return Future.value(true);
   });
 }

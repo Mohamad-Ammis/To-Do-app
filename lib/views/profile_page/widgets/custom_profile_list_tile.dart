@@ -6,11 +6,12 @@ class CustomProfileListTile extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
-    this.onTap,
+    this.onTap, this.trailing,
   });
   final IconData icon;
   final String title;
   final void Function()? onTap;
+  final Widget? trailing;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -23,7 +24,7 @@ class CustomProfileListTile extends StatelessWidget {
             style: const TextStyle(
                 color: Constans.kWhiteElementColor,
                 fontFamily: Constans.kFontFamily)),
-        trailing: Icon(
+        trailing:trailing?? Icon(
           Icons.arrow_forward_ios,
           color: Constans.kWhiteElementColor.withOpacity(.6),
         ),

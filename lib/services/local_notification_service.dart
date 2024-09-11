@@ -5,10 +5,16 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:get/get.dart';
+import 'package:to_do_app/controllers/profile_page_controller.dart'; // استيراد المتحكم
 
-class LocalNotificationsService {
+class LocalNotificationsService extends GetxService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
+  // الحصول على المتحكم من GetX
+  static final ProfilePageController controller =
+      Get.put(ProfilePageController());
 
   static Future<void> init() async {
     InitializationSettings settings = InitializationSettings(
@@ -22,38 +28,51 @@ class LocalNotificationsService {
   }
 
   static void showBasicNotification() {
+    if (!controller.notificationsEnabled.value) {
+      log('notification service is disabled so notification dismiss automaticlly');
+      return;
+    }
     NotificationDetails details = NotificationDetails(
-      android: AndroidNotificationDetails('id 1', 'basic'),
+      android: AndroidNotificationDetails('id 0', 'basic'),
     );
     flutterLocalNotificationsPlugin.show(
       0,
-      'title basic',
-      'body',
+      'Basic Notification',
+      'This is a basic notification',
       details,
     );
   }
 
   static void showReapetedNotification() {
+    if (!controller.notificationsEnabled.value) {
+      log('notification service is disabled so notification dismiss automaticlly');
+      return;
+    }
     NotificationDetails details = NotificationDetails(
       android: AndroidNotificationDetails('id 1', 'repeated'),
     );
     flutterLocalNotificationsPlugin.periodicallyShow(
       1,
-      'title repeated',
-      'body',
+      'Repeated Notification',
+      'This notification repeats every minute',
       RepeatInterval.everyMinute,
       details,
     );
   }
 
-  static Future<void> showScheduledNotification(
-      {required String title,
-      required DateTime date,
-      required hour,
-      required minute}) async {
+  static Future<void> showScheduledNotification({
+    required String title,
+    required DateTime date,
+    required int hour,
+    required int minute,
+  }) async {
+    if (!controller.notificationsEnabled.value) {
+      log('notification service is disabled so notification dismiss automaticlly');
+      return;
+    }
     try {
       NotificationDetails details = NotificationDetails(
-        android: AndroidNotificationDetails('id 2', 'Schduled'),
+        android: AndroidNotificationDetails('id 2', 'Scheduled'),
       );
       tz.initializeTimeZones();
       final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
@@ -62,25 +81,36 @@ class LocalNotificationsService {
           tz.local, date.year, date.month, date.day, hour, minute);
 
       if (scheduledDate.isBefore(tz.TZDateTime.now(tz.local))) {
-        debugPrint('you will not receive notification for this task');
+        debugPrint('You will not receive notification for this task');
         return;
       }
+
       await flutterLocalNotificationsPlugin.zonedSchedule(
-          2,
-          '$title ',
-          'your task time is end , let\'s finish another one',
-          tz.TZDateTime(
-              tz.local, date.year, date.month, date.day, hour, minute),
-          details,
-          uiLocalNotificationDateInterpretation:
-              UILocalNotificationDateInterpretation.absoluteTime);
-    } on Exception catch (e) {
-      debugPrint('e: ${e}');
+        2,
+        title,
+        'Your task time has ended, let\'s finish another one',
+        scheduledDate,
+        details,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+      );
+    } catch (e) {
+      debugPrint('Error scheduling notification: $e');
     }
   }
 
+  static Future<void> cancelAllNotifications() async {
+    await flutterLocalNotificationsPlugin.cancelAll();
+  }
+
   static Future<void> showDailyScheduledNotification() async {
+    log('showDailyScheduledNotification');
+    if (!controller.notificationsEnabled.value) {
+      log('notification service is disabled so notification dismiss automaticlly');
+      return;
+    }
     try {
+      log('tryyyyyyyyy');
       NotificationDetails details = NotificationDetails(
         android: AndroidNotificationDetails('id 3', 'Daily'),
       );
@@ -91,7 +121,7 @@ class LocalNotificationsService {
       log(tz.local.name);
       final currentTime = tz.TZDateTime.now(tz.local);
       var scheduledTime = tz.TZDateTime(tz.local, currentTime.year,
-          currentTime.month, currentTime.day, 21, 30);
+          currentTime.month, currentTime.day, 23, 24);
 
       debugPrint('scheduledTime: ${scheduledTime}');
       debugPrint('currentTime: ${currentTime}');
@@ -115,10 +145,6 @@ class LocalNotificationsService {
     } on Exception catch (e) {
       debugPrint('Error: ${e}');
     }
-  }
-
-  static Future<void> cancelNotification(id) async {
-    await flutterLocalNotificationsPlugin.cancel(id);
   }
 }
 

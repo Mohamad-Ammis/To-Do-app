@@ -6,6 +6,7 @@ import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/add_task_controller.dart';
 import 'package:to_do_app/controllers/category_page_controller.dart';
 import 'package:to_do_app/controllers/form_controller.dart';
+import 'package:to_do_app/controllers/home_page.controller.dart';
 import 'package:to_do_app/controllers/navigation_controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/helper/custom_toast_notification.dart';
@@ -21,6 +22,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
   final CategoryPageController categoryPageController =
       Get.put(CategoryPageController());
   final navigationController = Get.put(NavigationController());
+  final HomePageController homePageController = Get.put(HomePageController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FormController>(
@@ -75,8 +77,8 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                       .value,
                                   categories: categories,
                                   isCompleted: false);
-                                taskController.addTask(model, context);
-                              
+                              taskController.addTask(model, context);
+
                               log("task exist ${taskController.checkIfTaskExist(model)}");
                               navigationController.selectedIndex = 0;
                               controller.selectedDate = DateTime.now();
@@ -90,6 +92,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                               categoryPageController.selectedCategories.clear();
                               taskController.getAllTasks();
                               taskController.update();
+                              homePageController.selectedIndex = 0;
                               Get.offAll(() => const HomePage());
                             } else {
                               showErrorSnackBar('Error Happened',

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/profile_page_controller.dart';
+import 'package:to_do_app/main.dart';
 import 'package:to_do_app/services/image_picker_service.dart';
 import 'package:to_do_app/utils/app_images.dart';
 
@@ -50,7 +51,7 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
         ),
         const SizedBox(height: 10),
         Text(
-          'Mohamad Ammis',
+          userInfo.getString('user_name').toString(),
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,

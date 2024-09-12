@@ -4,7 +4,7 @@ import 'package:to_do_app/model/filter_model.dart';
 
 class HomePageController extends GetxController {
   int selectedIndex = 0;
-  bool showFilter = false;
+  bool showFilter = true;
   List<FilterModel> filtersList = [
     FilterModel(
         title: 'All',

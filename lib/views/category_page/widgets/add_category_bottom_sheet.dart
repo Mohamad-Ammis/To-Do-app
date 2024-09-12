@@ -21,7 +21,7 @@ class AddCategoryBottomSheet extends StatelessWidget {
         showDragHandle: true,
         enableDrag: false,
         clipBehavior: Clip.hardEdge,
-        backgroundColor: Constans.kDarkBackgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         onClosing: () {},
         builder: (context) {
           return Padding(
@@ -35,14 +35,23 @@ class AddCategoryBottomSheet extends StatelessWidget {
                       onChanged: (p0) {
                         controller.title = p0;
                       },
+                      prefixIcon: Icon(
+                        Icons.category,
+                        color: Get.isDarkMode
+                            ? Colors.white.withOpacity(.4)
+                            : Colors.black.withOpacity(.6),
+                      ),
                       hintText: "Enter Category Name..",
-                      hintStyle: TextStyle(color: Colors.white.withOpacity(.4)),
+                      hintStyle: TextStyle(
+                          color: Get.isDarkMode
+                              ? Colors.white.withOpacity(.4)
+                              : Colors.black.withOpacity(.6)),
                       textStyle: TextStyle(
                           fontFamily: Constans.kFontFamily,
-                          color: Constans.kWhiteElementColor),
-                      cursorColor: Constans.kWhiteElementColor,
+                          color: Theme.of(context).colorScheme.secondary),
+                      cursorColor: Theme.of(context).colorScheme.secondary,
                       filled: true,
-                      fillColor: Constans.kCardBackgroundColor,
+                      fillColor: Theme.of(context).colorScheme.primary,
                       focusedBorderColor: Colors.transparent,
                       enabledBorderColor: Colors.transparent),
                   SizedBox(
@@ -52,7 +61,10 @@ class AddCategoryBottomSheet extends StatelessWidget {
                     "Select category backgound color",
                     style: TextStyle(
                         fontFamily: Constans.kFontFamily,
-                        color: Constans.kWhiteElementColor.withOpacity(.8)),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(.8)),
                   ),
                   SizedBox(
                     height: 15,
@@ -71,12 +83,14 @@ class AddCategoryBottomSheet extends StatelessWidget {
                               "Select category Icon",
                               style: TextStyle(
                                   fontFamily: Constans.kFontFamily,
-                                  color: Constans.kWhiteElementColor
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary
                                       .withOpacity(.8)),
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                  color: Constans.kCardBackgroundColor,
+                                  color: Theme.of(context).colorScheme.primary,
                                   shape: BoxShape.circle),
                               child: IconButton(
                                   onPressed: () async {
@@ -91,8 +105,9 @@ class AddCategoryBottomSheet extends StatelessWidget {
                                                                 .circular(32)),
                                                 backgroundColor: Constans
                                                     .kCardBackgroundColor,
-                                                iconColor:
-                                                    Constans.kWhiteElementColor,
+                                                iconColor: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
                                                 closeChild: Text(
                                                   "Close",
                                                   style: TextStyle(
@@ -110,7 +125,8 @@ class AddCategoryBottomSheet extends StatelessWidget {
                                   },
                                   icon: Icon(
                                     controller.selectedIcon,
-                                    color: Constans.kWhiteElementColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                   )),
                             )
                           ],

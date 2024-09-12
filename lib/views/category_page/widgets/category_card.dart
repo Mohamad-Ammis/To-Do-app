@@ -58,7 +58,12 @@ class CategoryCard extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                    color: Constans.kWhiteElementColor.withOpacity(.9),
+                    color: Get.isDarkMode
+                        ? Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(.9)
+                        : Colors.white,
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(Constans.kCardBorderRadius),
                         bottomLeft:
@@ -66,6 +71,7 @@ class CategoryCard extends StatelessWidget {
                 child: Icon(
                   Icons.delete_forever,
                   size: 20,
+                  color: Colors.black,
                 ),
               ),
             ),

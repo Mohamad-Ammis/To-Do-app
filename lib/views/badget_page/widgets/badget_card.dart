@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 
 class BadgetCard extends StatelessWidget {
@@ -7,7 +8,8 @@ class BadgetCard extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.progress,
-    required this.hard, required this.medalImage,
+    required this.hard,
+    required this.medalImage,
   });
   final String title;
   final String subTitle;
@@ -23,7 +25,7 @@ class BadgetCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
-              color: Constans.kCardBackgroundColor,
+              color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
           child: Row(
             children: [
@@ -44,10 +46,10 @@ class BadgetCard extends StatelessWidget {
                     progress * hard < 1
                         ? '${((progress * 100) * hard).toStringAsFixed(1)}%'
                         : '100%',
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                        color: Get.isDarkMode ? Colors.white : Colors.black),
                   ),
                 ],
               ),
@@ -62,9 +64,9 @@ class BadgetCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: Constans.kFontFamily,
-                          color: Constans.kWhiteElementColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
@@ -76,7 +78,10 @@ class BadgetCard extends StatelessWidget {
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontFamily: Constans.kFontFamily,
-                        color: Constans.kWhiteElementColor.withOpacity(.86),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(.86),
                       ),
                     ),
                   ],
@@ -93,14 +98,13 @@ class BadgetCard extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                  color: Constans.kDarkBackgroundColor.withOpacity(.7),
+                  color:
+                      Theme.of(context).colorScheme.background.withOpacity(.7),
                   borderRadius:
                       BorderRadius.circular(Constans.kCardBorderRadius)),
-              child: const Center(
-                child: Icon(
-                  Icons.lock,
-                  color: Colors.white,
-                ),
+              child: Center(
+                child: Icon(Icons.lock,
+                    color: Get.isDarkMode ? Colors.white : Colors.black),
               ),
             ),
           )

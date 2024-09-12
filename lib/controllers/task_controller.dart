@@ -234,6 +234,5 @@ class TaskController extends GetxController {
     super.onInit();
     deleteTasksWithEmptyTitle();
     displayTasksList = getAllTasks();
-    update();
   }
 }

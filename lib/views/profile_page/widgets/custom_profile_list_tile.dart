@@ -6,7 +6,8 @@ class CustomProfileListTile extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
-    this.onTap, this.trailing,
+    this.onTap,
+    this.trailing,
   });
   final IconData icon;
   final String title;
@@ -17,17 +18,18 @@ class CustomProfileListTile extends StatelessWidget {
     return ListTile(
         leading: Icon(
           icon,
-          color: Constans.kWhiteElementColor.withOpacity(.6),
+          color: Theme.of(context).colorScheme.secondary.withOpacity(.6),
           size: 20,
         ),
         title: Text(title,
-            style: const TextStyle(
-                color: Constans.kWhiteElementColor,
+            style:  TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
                 fontFamily: Constans.kFontFamily)),
-        trailing:trailing?? Icon(
-          Icons.arrow_forward_ios,
-          color: Constans.kWhiteElementColor.withOpacity(.6),
-        ),
+        trailing: trailing ??
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Theme.of(context).colorScheme.secondary.withOpacity(.6),
+            ),
         onTap: onTap);
   }
 }

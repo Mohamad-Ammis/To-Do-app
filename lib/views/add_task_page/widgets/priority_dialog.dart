@@ -8,7 +8,8 @@ import 'package:to_do_app/widgets/custom_timer_picker/time_picker.dart';
 
 class PriorityDialog extends StatelessWidget {
   const PriorityDialog({
-    super.key, required this.isEditingPage,
+    super.key,
+    required this.isEditingPage,
   });
   final bool isEditingPage;
   @override
@@ -17,13 +18,13 @@ class PriorityDialog extends StatelessWidget {
         init: AddTaskController(),
         builder: (controller) {
           return AlertDialog(
-            backgroundColor: Constans.kCardBackgroundColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             contentPadding: EdgeInsets.zero,
             clipBehavior: Clip.hardEdge,
             content: Container(
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
-                  color: Constans.kCardBackgroundColor,
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(16)),
               padding: EdgeInsets.all(16),
               width: 300,
@@ -34,7 +35,7 @@ class PriorityDialog extends StatelessWidget {
                   Text(
                     "Set your task priority",
                     style: TextStyle(
-                        color: Constans.kWhiteElementColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontFamily: Constans.kFontFamily,
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
@@ -45,7 +46,7 @@ class PriorityDialog extends StatelessWidget {
                   Text(
                     "1,2 is for important task and so on..",
                     style: TextStyle(
-                        color: Constans.kWhiteElementColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontFamily: Constans.kFontFamily,
                         fontSize: 10),
                   ),
@@ -57,6 +58,8 @@ class PriorityDialog extends StatelessWidget {
                     isEditingPage: isEditingPage,
                   )),
                   CustomButton(
+                    margin: 12,
+                    color: Get.isDarkMode ? null : Colors.black,
                     title: 'S A V E',
                     onTap: () {
                       controller.setPriority = true;
@@ -65,6 +68,7 @@ class PriorityDialog extends StatelessWidget {
                       controller.update();
                       Get.back();
                     },
+                    titleColor: Get.isDarkMode ? Colors.black : Colors.white,
                   )
                 ],
               ),

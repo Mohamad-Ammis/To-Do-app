@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 
 class FilterCard extends StatelessWidget {
@@ -15,14 +16,20 @@ class FilterCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 4),
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-          color: isActive ? Colors.blue : Constans.kCardBackgroundColor,
+          color: isActive ? Colors.blue : Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(8)),
       duration: Duration(milliseconds: 300),
       child: Center(
         child: Text(
           title,
           style: TextStyle(
-            color: Constans.kWhiteElementColor,
+            color: isActive
+                ? Get.isDarkMode
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.white
+                : !Get.isDarkMode
+                    ? Colors.black
+                    : Colors.white,
             fontFamily: Constans.kFontFamily,
             fontWeight: FontWeight.bold,
           ),

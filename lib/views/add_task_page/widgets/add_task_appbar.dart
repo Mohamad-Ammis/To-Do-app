@@ -29,12 +29,12 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
         init: FormController(),
         builder: (formController) {
           return AppBar(
-            backgroundColor: Constans.kDarkBackgroundColor,
-            title: const Text(
+            backgroundColor: Theme.of(context).colorScheme.background,
+            title: Text(
               "Add Task",
               style: TextStyle(
                   fontFamily: Constans.kFontFamily,
-                  color: Constans.kWhiteElementColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                   fontSize: 24),
             ),
@@ -116,11 +116,11 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                   color: Colors.white.withOpacity(.3))
                             ],
                             shape: BoxShape.circle,
-                            color: Constans.kCardBackgroundColor,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.done,
-                            color: Constans.kWhiteElementColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ));
                   })

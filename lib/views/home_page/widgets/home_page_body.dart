@@ -15,7 +15,7 @@ class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constans.kDarkBackgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: HomePageAppbar(),
       body: Column(
         children: [

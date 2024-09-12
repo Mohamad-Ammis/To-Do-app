@@ -88,7 +88,7 @@ class LocalNotificationsService extends GetxService {
       await flutterLocalNotificationsPlugin.zonedSchedule(
         2,
         title,
-        'Your task time has ended, let\'s finish another one',
+        'Your task time has ended, we hope you dont miss it',
         scheduledDate,
         details,
         uiLocalNotificationDateInterpretation:
@@ -110,7 +110,6 @@ class LocalNotificationsService extends GetxService {
       return;
     }
     try {
-      log('tryyyyyyyyy');
       NotificationDetails details = NotificationDetails(
         android: AndroidNotificationDetails('id 3', 'Daily'),
       );

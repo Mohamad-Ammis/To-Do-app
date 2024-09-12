@@ -27,7 +27,7 @@ class TaskProperties extends StatelessWidget {
             },
             icon: Icon(
               Icons.calendar_month_outlined,
-              color: Constans.kWhiteElementColor.withOpacity(.5),
+              color: Theme.of(context).colorScheme.secondary.withOpacity(.5),
               size: 30,
             )),
         IconButton(
@@ -36,7 +36,7 @@ class TaskProperties extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  backgroundColor: Constans.kCardBackgroundColor,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   contentPadding: EdgeInsets.zero,
                   content: Container(
                     width: 300,
@@ -51,7 +51,7 @@ class TaskProperties extends StatelessWidget {
           },
           icon: Icon(
             Icons.timer_sharp,
-            color: Constans.kWhiteElementColor.withOpacity(.5),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(.5),
             size: 30,
           ),
         ),
@@ -60,13 +60,18 @@ class TaskProperties extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) {
-                return PriorityDialog(isEditingPage: false,);
+                return PriorityDialog(
+                  isEditingPage: false,
+                );
               },
             );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(Assets.imagesFlag),
+            child: Image.asset(
+              Assets.imagesFlag,
+              color: Theme.of(context).colorScheme.secondary.withOpacity(.5),
+            ),
           ),
         )
       ],

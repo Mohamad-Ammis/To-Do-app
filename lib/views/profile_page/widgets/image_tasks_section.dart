@@ -40,7 +40,7 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
                 }
               },
               child: CircleAvatar(
-                backgroundColor: Constans.kWhiteElementColor,
+                backgroundColor: Theme.of(context).colorScheme.secondary,
                 radius: 50,
                 backgroundImage: (imagePath != null && imagePath.isNotEmpty)
                     ? FileImage(File(imagePath))
@@ -56,7 +56,7 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
             fontSize: 22,
             fontWeight: FontWeight.bold,
             fontFamily: Constans.kFontFamily,
-            color: Constans.kWhiteElementColor.withOpacity(.86),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(.86),
           ),
         ),
         const SizedBox(height: 20),
@@ -72,8 +72,8 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
                         color: Colors.redAccent,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text('${controller.toDoTaskCount} Task left',
-                        style: const TextStyle(
-                          color: Constans.kWhiteElementColor,
+                        style: TextStyle(
+                          color: Colors.white,
                           fontFamily: Constans.kFontFamily,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -85,10 +85,10 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text('${controller.completedTaskCount} Task done',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Constans.kWhiteElementColor,
+                          color: Colors.white,
                           fontFamily: Constans.kFontFamily,
                         )),
                   ),

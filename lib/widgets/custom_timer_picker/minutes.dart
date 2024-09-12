@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 
 class MinutesTile extends StatelessWidget {
@@ -13,8 +14,11 @@ class MinutesTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 0),
       child: AnimatedContainer(
         decoration: BoxDecoration(
-            color:
-                isSelected ? Colors.white.withOpacity(.1) : Colors.transparent,
+            color: isSelected
+                ? Get.isDarkMode
+                    ? Colors.white.withOpacity(.1)
+                    : Colors.black
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
         duration: Duration(milliseconds: 300),
         child: Center(
@@ -23,7 +27,11 @@ class MinutesTile extends StatelessWidget {
             style: TextStyle(
                 fontFamily: Constans.kFontFamily,
                 fontSize: 40,
-                color: Constans.kWhiteElementColor,
+                color: isSelected
+                    ? Get.isDarkMode
+                        ? Theme.of(context).colorScheme.secondary
+                        : Colors.white
+                    : Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.bold),
           ),
         ),

@@ -15,7 +15,7 @@ class HomePageSearchBar extends StatelessWidget {
         horizontal: 16,
       ),
       decoration: BoxDecoration(
-          color: Constans.kCardBackgroundColor,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
       width: MediaQuery.sizeOf(context).width,
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -23,13 +23,13 @@ class HomePageSearchBar extends StatelessWidget {
         children: [
           Icon(
             Icons.search,
-            color: Constans.kWhiteElementColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           Expanded(
               child: TextField(
             style: TextStyle(
                 fontFamily: Constans.kFontFamily,
-                color: Constans.kWhiteElementColor),
+                color: Theme.of(context).colorScheme.secondary),
             onChanged: (value) {
               controller.displayTasksList = controller.searchTasks(value);
               controller.update();
@@ -44,7 +44,8 @@ class HomePageSearchBar extends StatelessWidget {
                     OutlineInputBorder(borderSide: BorderSide.none),
                 hintText: 'Search here .....',
                 hintStyle: TextStyle(
-                    color: Constans.kWhiteElementColor.withOpacity(.4),
+                    color:
+                        Theme.of(context).colorScheme.secondary.withOpacity(.4),
                     fontFamily: Constans.kFontFamily)),
             cursorColor: Colors.white,
           ))

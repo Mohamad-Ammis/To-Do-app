@@ -71,9 +71,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   hintText: 'Your Name..',
                   hintStyle: TextStyle(color: Colors.black.withOpacity(.3)),
                   textStyle: TextStyle(color: Colors.black),
-                  cursorColor: Constans.kDarkBackgroundColor,
+                  cursorColor: Theme.of(context).colorScheme.background,
                   filled: true,
-                  fillColor: const Color.fromARGB(255, 192, 188, 188),
+                  fillColor: const Color.fromARGB(255, 202, 199, 199),
                   focusedBorderColor: Colors.black,
                   enabledBorderColor: Colors.red),
               SizedBox(
@@ -92,7 +92,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 },
                 title: 'Get started',
                 margin: 0,
-                color: const Color.fromARGB(255, 30, 133, 218),
+                // color: const Color.fromARGB(255, 30, 133, 218),
+                color: const Color.fromARGB(255, 70, 109, 71),
+
                 titleColor: Colors.white,
                 height: 56,
               ),

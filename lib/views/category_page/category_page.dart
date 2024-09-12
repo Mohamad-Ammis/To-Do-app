@@ -14,14 +14,14 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constans.kDarkBackgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Constans.kDarkBackgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: Text(
           'Categories',
           style: TextStyle(
               fontFamily: Constans.kFontFamily,
-              color: Constans.kWhiteElementColor),
+              color: Theme.of(context).colorScheme.secondary),
         ),
         centerTitle: true,
         scrolledUnderElevation: 0,
@@ -29,7 +29,7 @@ class CategoryPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
-              color: Constans.kCardBackgroundColor,
+              color: Theme.of(context).colorScheme.primary,
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(blurRadius: 10, color: Colors.white.withOpacity(.3))
@@ -42,7 +42,7 @@ class CategoryPage extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.add,
-                  color: Constans.kWhiteElementColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 )),
           )
         ],

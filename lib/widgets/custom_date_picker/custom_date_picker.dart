@@ -8,7 +8,8 @@ import 'package:to_do_app/widgets/custom_timer_picker/time_picker.dart';
 
 class CustomDatePicker extends StatelessWidget {
   CustomDatePicker({
-    super.key, required this.isEditingPage,
+    super.key,
+    required this.isEditingPage,
   });
   final bool isEditingPage;
   final editTaskController = Get.put(EditTaskController());
@@ -20,18 +21,20 @@ class CustomDatePicker extends StatelessWidget {
           return AlertDialog(
             contentPadding: EdgeInsets.zero,
             content: Container(
-              color: Constans.kCardBackgroundColor,
+              color: Theme.of(context).colorScheme.primary,
               width: MediaQuery.of(context).size.width,
               height: 450,
               child: Stack(
                 children: [
-                  CustomTableCalender(isEditingPage:isEditingPage),
+                  CustomTableCalender(isEditingPage: isEditingPage),
                   Positioned.fill(
                       child: Align(
                     alignment: Alignment.bottomCenter,
                     child: SizedBox(
                         width: MediaQuery.sizeOf(context).width,
                         child: CustomButton(
+                            color: Theme.of(context).colorScheme.secondary,
+                            titleColor: Theme.of(context).colorScheme.primary,
                             onTap: () {
                               controller.selectedDate;
                               debugPrint(

@@ -59,7 +59,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                             Text(
                               'Hours',
                               style: TextStyle(
-                                color: Constans.kWhiteElementColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontFamily: Constans.kFontFamily,
                               ),
                             ),
@@ -106,7 +106,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                             Text(
                               'Minutes',
                               style: TextStyle(
-                                color: Constans.kWhiteElementColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontFamily: Constans.kFontFamily,
                               ),
                             ),
@@ -150,6 +150,8 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                   ),
                 ),
                 CustomButton(
+                  color: Get.isDarkMode ? null : Colors.black,
+                  titleColor: Get.isDarkMode ? Colors.black : Colors.white,
                   onTap: () {
                     debugPrint('hours ${taskController.selectedHourIndex}');
                     debugPrint('minutes ${taskController.selectedMinuteIndex}');
@@ -174,7 +176,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
             },
             child: Icon(
               Icons.close,
-              color: Constans.kWhiteElementColor,
+              color: Theme.of(context).colorScheme.secondary,
               size: 24,
             ),
           ),
@@ -192,7 +194,8 @@ class CustomButton extends StatelessWidget {
     this.color,
     this.titleColor,
     this.height,
-    this.margin, this.titleSize,
+    this.margin,
+    this.titleSize,
   });
   final void Function()? onTap;
   final String title;
@@ -219,7 +222,7 @@ class CustomButton extends StatelessWidget {
             style: TextStyle(
                 fontFamily: Constans.kFontFamily,
                 fontWeight: FontWeight.bold,
-                fontSize:titleSize?? 20,
+                fontSize: titleSize ?? 20,
                 color: titleColor),
           ),
         ),

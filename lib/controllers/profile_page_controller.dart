@@ -33,7 +33,8 @@ class ProfilePageController extends GetxController {
   // دالة لتحميل حالة الإشعارات
   Future<void> loadNotificationPreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    notificationsEnabled.value = prefs.getBool('notificationsEnabled') ?? true; // القيمة الافتراضية true
+    notificationsEnabled.value =
+        prefs.getBool('notificationsEnabled') ?? true; // القيمة الافتراضية true
   }
 
   // دالة التحكم في الإشعارات

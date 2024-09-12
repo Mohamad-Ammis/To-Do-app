@@ -17,7 +17,7 @@ class EditTaskPage extends StatelessWidget {
       appBar: EditTaskAppbar(
         model: model,
       ),
-      backgroundColor: Constans.kDarkBackgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -34,7 +34,10 @@ class EditTaskPage extends StatelessWidget {
                   Text(
                     'Choose your task Color',
                     style: TextStyle(
-                        color: Constans.kWhiteElementColor.withOpacity(.9),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(.9),
                         fontFamily: Constans.kFontFamily,
                         fontSize: 16),
                   ),
@@ -53,7 +56,7 @@ class EditTaskPage extends StatelessWidget {
                   //   'Add your task date , time , priority ',
                   //   overflow: TextOverflow.ellipsis,
                   //   style: TextStyle(
-                  //       color: Constans.kWhiteElementColor.withOpacity(.9),
+                  //       color: Theme.of(context).colorScheme.secondary.withOpacity(.9),
                   //       fontFamily: Constans.kFontFamily,
                   //       fontSize: 16),
                   // ),
@@ -77,7 +80,7 @@ class EditTaskPage extends StatelessWidget {
                     margin: 0,
                     title: 'C O M P L E T E D',
                     color: Colors.green,
-                    titleColor: Constans.kWhiteElementColor,
+                    titleColor: Theme.of(context).colorScheme.secondary,
                   )
                 : DateTime.parse(model.endDate).isAfter(DateTime.now())
                     ? CustomButton(
@@ -93,7 +96,7 @@ class EditTaskPage extends StatelessWidget {
                         margin: 0,
                         title: 'Missed Task',
                         color: Colors.red,
-                        titleColor: Constans.kWhiteElementColor,
+                        titleColor: Colors.white,
                       )
           ],
         ),

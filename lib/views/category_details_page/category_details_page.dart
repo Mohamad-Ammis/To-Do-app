@@ -12,17 +12,17 @@ class CategoryDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        backgroundColor: Constans.kDarkBackgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: Text(
           '$title Tasks',
           style: TextStyle(
               fontFamily: Constans.kFontFamily,
-              color: Constans.kWhiteElementColor),
+              color: Theme.of(context).colorScheme.secondary),
         ),
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
-      backgroundColor: Constans.kDarkBackgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: GetBuilder<CategoryPageController>(
           init: CategoryPageController(),
           builder: (controller) {

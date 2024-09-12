@@ -29,17 +29,21 @@ class AddTaskForm extends StatelessWidget {
                       },
                       hintText: 'Enter yout task title ...',
                       hintStyle: TextStyle(
-                          color: Constans.kWhiteElementColor.withOpacity(.3),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.3),
                           fontFamily: Constans.kFontFamily),
                       textStyle: TextStyle(
-                          color: Constans.kWhiteElementColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontFamily: Constans.kFontFamily),
-                      cursorColor: Constans.kWhiteElementColor,
+                      cursorColor: Theme.of(context).colorScheme.secondary,
                       label: null,
                       labelStyle: null,
                       filled: true,
-                      fillColor: Constans.kCardBackgroundColor,
-                      focusedBorderColor: Constans.kWhiteElementColor,
+                      fillColor: Theme.of(context).colorScheme.primary,
+                      focusedBorderColor:
+                          Theme.of(context).colorScheme.secondary,
                       enabledBorderColor: Colors.transparent,
                       maxLines: 1,
                     ),
@@ -52,7 +56,10 @@ class AddTaskForm extends StatelessWidget {
                             Assets.imagesTarget,
                             width: 20,
                             height: 20,
-                            color: Constans.kWhiteElementColor.withOpacity(.3),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(.3),
                           ),
                         ),
                       ),
@@ -71,17 +78,21 @@ class AddTaskForm extends StatelessWidget {
                       maxLines: 5,
                       hintText: 'Enter your task description ...',
                       hintStyle: TextStyle(
-                          color: Constans.kWhiteElementColor.withOpacity(.3),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.3),
                           fontFamily: Constans.kFontFamily),
                       textStyle: TextStyle(
-                          color: Constans.kWhiteElementColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontFamily: Constans.kFontFamily),
-                      cursorColor: Constans.kWhiteElementColor,
+                      cursorColor: Theme.of(context).colorScheme.secondary,
                       label: null,
                       labelStyle: null,
                       filled: true,
-                      fillColor: Constans.kCardBackgroundColor,
-                      focusedBorderColor: Constans.kWhiteElementColor,
+                      fillColor: Theme.of(context).colorScheme.primary,
+                      focusedBorderColor:
+                          Theme.of(context).colorScheme.secondary,
                       enabledBorderColor: Colors.transparent,
                     ),
                     Positioned.fill(
@@ -93,7 +104,10 @@ class AddTaskForm extends StatelessWidget {
                           Assets.imagesTask,
                           width: 20,
                           height: 20,
-                          color: Constans.kWhiteElementColor.withOpacity(.3),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.3),
                         ),
                       ),
                     )),

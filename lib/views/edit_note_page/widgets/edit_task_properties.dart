@@ -19,13 +19,15 @@ class EditTaskProperties extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return CustomDatePicker(isEditingPage: true,);
+                  return CustomDatePicker(
+                    isEditingPage: true,
+                  );
                 },
               );
             },
             icon: Icon(
               Icons.calendar_month_outlined,
-              color: Constans.kWhiteElementColor.withOpacity(.5),
+              color: Theme.of(context).colorScheme.secondary.withOpacity(.5),
               size: 30,
             )),
         IconButton(
@@ -34,12 +36,14 @@ class EditTaskProperties extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  backgroundColor: Constans.kCardBackgroundColor,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   contentPadding: EdgeInsets.zero,
                   content: Container(
                     width: 300,
                     height: 450,
-                    child: CustomTimerPicker(isEditingPage: true,),
+                    child: CustomTimerPicker(
+                      isEditingPage: true,
+                    ),
                   ),
                 );
               },
@@ -47,7 +51,7 @@ class EditTaskProperties extends StatelessWidget {
           },
           icon: Icon(
             Icons.timer_sharp,
-            color: Constans.kWhiteElementColor.withOpacity(.5),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(.5),
             size: 30,
           ),
         ),
@@ -56,7 +60,9 @@ class EditTaskProperties extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) {
-                return PriorityDialog(isEditingPage: true,);
+                return PriorityDialog(
+                  isEditingPage: true,
+                );
               },
             );
           },

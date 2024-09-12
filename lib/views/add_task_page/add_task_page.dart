@@ -17,7 +17,7 @@ class AddTaskPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AddTaskAppbar(),
-      backgroundColor: Constans.kDarkBackgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -31,7 +31,8 @@ class AddTaskPage extends StatelessWidget {
               Text(
                 'Choose your task Color',
                 style: TextStyle(
-                    color: Constans.kWhiteElementColor.withOpacity(.9),
+                    color:
+                        Theme.of(context).colorScheme.secondary.withOpacity(.9),
                     fontFamily: Constans.kFontFamily,
                     fontSize: 16),
               ),
@@ -48,7 +49,8 @@ class AddTaskPage extends StatelessWidget {
                 'Add your task date , time , priority ',
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    color: Constans.kWhiteElementColor.withOpacity(.9),
+                    color:
+                        Theme.of(context).colorScheme.secondary.withOpacity(.9),
                     fontFamily: Constans.kFontFamily,
                     fontSize: 16),
               ),
@@ -94,21 +96,27 @@ class TaskCategorySection extends StatelessWidget {
                     'Select Your Task Categoty ',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: Constans.kWhiteElementColor.withOpacity(.9),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(.9),
                         fontFamily: Constans.kFontFamily,
                         fontSize: 16),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        controller.showCategories = !controller.showCategories;
-                        controller.update();
-                      },
-                      icon: Icon(
-                        controller.showCategories
-                            ? Icons.arrow_circle_up_rounded
-                            : Icons.arrow_drop_down_circle,
-                        color: Colors.white,
-                      ))
+                  Container(
+                    child: IconButton(
+                        onPressed: () {
+                          controller.showCategories =
+                              !controller.showCategories;
+                          controller.update();
+                        },
+                        icon: Icon(
+                          controller.showCategories
+                              ? Icons.arrow_circle_up_rounded
+                              : Icons.arrow_drop_down_circle,
+                          color: Get.isDarkMode ? Colors.white : Colors.black,
+                        )),
+                  )
                 ],
               ),
               if (controller.showCategories)
@@ -179,23 +187,22 @@ class SelectCategoryGrid extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: CategoryCard(
-                        showDeleteIcon:showDeleteIcon,
+                        showDeleteIcon: showDeleteIcon,
                         model: controller.categoriesList[index],
                       ),
                     ),
-                      Positioned(
-                        top: 4,
-                        left: 4,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white)),
-                          child: Icon(
-                            Icons.done,
-                            color:
-                                isSelected ? Colors.white : Colors.transparent,
-                          ),
+                    Positioned(
+                      top: 4,
+                      left: 4,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white)),
+                        child: Icon(
+                          Icons.done,
+                          color: isSelected ? Colors.white : Colors.transparent,
                         ),
                       ),
+                    ),
                   ],
                 ),
               );

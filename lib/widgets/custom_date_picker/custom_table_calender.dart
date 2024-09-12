@@ -21,9 +21,13 @@ class CustomTableCalender extends StatelessWidget {
             availableCalendarFormats: {CalendarFormat.month: 'Month'},
             headerStyle: HeaderStyle(
                 decoration: BoxDecoration(
-                  color: Constans.kWhiteElementColor.withOpacity(.9),
+                  color: Get.isDarkMode
+                      ? Constans.kCardBackgroundColor
+                      : Colors.white,
                 ),
-                titleTextStyle: TextStyle(fontFamily: Constans.kFontFamily),
+                titleTextStyle: TextStyle(
+                    fontFamily: Constans.kFontFamily,
+                    color: Get.isDarkMode ? Colors.white : Colors.black),
                 formatButtonTextStyle:
                     TextStyle(fontFamily: Constans.kFontFamily),
                 headerMargin: EdgeInsets.only(bottom: 8)),
@@ -41,18 +45,20 @@ class CustomTableCalender extends StatelessWidget {
               }
               controller.update();
             },
-            calendarStyle: const CalendarStyle(
+            calendarStyle: CalendarStyle(
               todayDecoration: BoxDecoration(
                   shape: BoxShape.circle, color: Colors.transparent),
-              defaultTextStyle: TextStyle(color: Colors.white),
-              weekendTextStyle: TextStyle(color: Colors.white),
+              defaultTextStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.secondary),
+              weekendTextStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.secondary),
               disabledTextStyle: TextStyle(color: Colors.red),
               selectedTextStyle: TextStyle(
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,
               ),
               selectedDecoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.secondary,
                 shape: BoxShape.circle,
               ),
             ),

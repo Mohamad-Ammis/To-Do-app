@@ -36,7 +36,7 @@ class TaskCard extends StatelessWidget {
                         BoxShadow(
                             blurRadius: 10, color: Colors.black.withOpacity(.3))
                       ],
-                      color: Constans.kWhiteElementColor,
+                      color: Colors.white,
                       borderRadius:
                           BorderRadius.circular(Constans.kCardBorderRadius)),
                   child: Text(
@@ -59,7 +59,7 @@ class TaskCard extends StatelessWidget {
                   model.title,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      color: Constans.kWhiteElementColor,
+                      color: Colors.white,
                       fontFamily: Constans.kFontFamily,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
@@ -106,7 +106,7 @@ class TaskCard extends StatelessWidget {
                                     blurRadius: 10,
                                     color: Colors.black.withOpacity(.3))
                               ],
-                              color: Constans.kWhiteElementColor,
+                              color: Colors.white,
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(
                                       Constans.kCardBorderRadius))),

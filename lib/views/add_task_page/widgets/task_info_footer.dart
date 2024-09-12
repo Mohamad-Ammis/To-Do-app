@@ -22,7 +22,10 @@ class TaskInfoFooter extends StatelessWidget {
                       'Due Date : ${DateFormat('MMM d, y').format(controller.selectedDate)}',
                       style: TextStyle(
                           fontFamily: Constans.kFontFamily,
-                          color: Constans.kWhiteElementColor.withOpacity(.9)))
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.9)))
                   : SizedBox(),
               SizedBox(
                 height: 5,
@@ -32,7 +35,10 @@ class TaskInfoFooter extends StatelessWidget {
                       'Due Time : ${controller.selectedHourIndex}:${controller.selectedMinuteIndex}',
                       style: TextStyle(
                           fontFamily: Constans.kFontFamily,
-                          color: Constans.kWhiteElementColor.withOpacity(.9)))
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.9)))
                   : SizedBox(),
               SizedBox(
                 height: 5,
@@ -42,7 +48,10 @@ class TaskInfoFooter extends StatelessWidget {
                       'Prioroty : ${controller.selectedPriority}',
                       style: TextStyle(
                           fontFamily: Constans.kFontFamily,
-                          color: Constans.kWhiteElementColor.withOpacity(.9)),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(.9)),
                     )
                   : SizedBox(),
             ],

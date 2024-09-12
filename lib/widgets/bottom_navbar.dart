@@ -19,16 +19,16 @@ class CustomBottomNavbar extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius:
                       BorderRadius.circular(Constans.kCardBorderRadius),
-                  color: Constans.kCardBackgroundColor,
+                  color: Theme.of(context).colorScheme.primary,
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.white.withOpacity(.1),
-                        offset: Offset(0, 20),
-                        blurRadius: 40),
+                        color: Colors.white.withOpacity(.08),
+                        offset: Offset(0, 10),
+                        blurRadius: 10),
                     BoxShadow(
-                        color: Colors.white.withOpacity(.15),
-                        offset: Offset(0, -20),
-                        blurRadius: 40)
+                        color: Colors.white.withOpacity(.08),
+                        offset: Offset(0, -10),
+                        blurRadius: 10)
                   ]),
               height: 70,
               child: Row(
@@ -48,7 +48,9 @@ class CustomBottomNavbar extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: controller.selectedIndex ==
                                     controller.navbarItems.indexOf(e)
-                                ? Colors.white.withOpacity(.05)
+                                ? Get.isDarkMode
+                                    ? Colors.white.withOpacity(.05)
+                                    : Colors.black.withOpacity(.025)
                                 : Colors.transparent,
                             borderRadius: BorderRadius.only(
                                 bottomRight:
@@ -73,16 +75,21 @@ class CustomBottomNavbar extends StatelessWidget {
                               e.icon,
                               color: controller.selectedIndex ==
                                       controller.navbarItems.indexOf(e)
-                                  ? Constans.kWhiteElementColor
-                                  : Constans.kWhiteElementColor.withOpacity(.5),
+                                  ? Theme.of(context).colorScheme.secondary
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .secondary
+                                      .withOpacity(.5),
                             ),
                             Text(
                               e.title,
                               style: TextStyle(
                                   color: controller.selectedIndex ==
                                           controller.navbarItems.indexOf(e)
-                                      ? Constans.kWhiteElementColor
-                                      : Constans.kWhiteElementColor
+                                      ? Theme.of(context).colorScheme.secondary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .secondary
                                           .withOpacity(.5),
                                   fontFamily: Constans.kFontFamily,
                                   fontSize: 10,

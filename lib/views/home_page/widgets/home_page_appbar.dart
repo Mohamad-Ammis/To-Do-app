@@ -42,14 +42,14 @@ class _HomePageAppbarState extends State<HomePageAppbar> {
                       controller.showFilter
                           ? Icons.filter_list
                           : Icons.filter_list_off,
-                      color: Constans.kWhiteElementColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ));
               }),
           title: Text(
             'Home',
             style: TextStyle(
               fontFamily: Constans.kFontFamily,
-              color: Constans.kWhiteElementColor,
+              color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -73,7 +73,7 @@ class _HomePageAppbarState extends State<HomePageAppbar> {
                     }
                   },
                   child: CircleAvatar(
-                    backgroundColor: Constans.kWhiteElementColor,
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
                     radius: 30,
                     backgroundImage: (imagePath != null && imagePath.isNotEmpty)
                         ? FileImage(File(imagePath))
@@ -86,7 +86,7 @@ class _HomePageAppbarState extends State<HomePageAppbar> {
               width: 10,
             )
           ],
-          backgroundColor: Constans.kDarkBackgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
         ),
       ),
     );

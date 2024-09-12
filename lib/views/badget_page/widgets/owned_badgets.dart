@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/utils/app_images.dart';
@@ -29,7 +28,8 @@ class OwnedBadets extends StatelessWidget {
               'Your Honors',
               style: TextStyle(
                   fontFamily: Constans.kFontFamily,
-                  color: Constans.kWhiteElementColor.withOpacity(.86),
+                  color:
+                      Theme.of(context).colorScheme.secondary.withOpacity(.86),
                   fontSize: 22),
             ),
           ],

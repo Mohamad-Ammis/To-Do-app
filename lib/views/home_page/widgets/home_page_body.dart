@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/controllers/home_page.controller.dart';
+import 'package:to_do_app/controllers/navigation_controller.dart';
+import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/views/home_page/widgets/filters_listview.dart';
 import 'package:to_do_app/views/home_page/widgets/home_page_appbar.dart';
 import 'package:to_do_app/views/home_page/widgets/home_page_searh_card.dart';
 import 'package:to_do_app/views/home_page/widgets/task_listview.dart';
 
-class HomePageBody extends StatelessWidget {
+class HomePageBody extends StatefulWidget {
   const HomePageBody({
     super.key,
   });
+
+  @override
+  State<HomePageBody> createState() => _HomePageBodyState();
+}
+
+class _HomePageBodyState extends State<HomePageBody> {
+  final NavigationController navigationController =
+      Get.put(NavigationController());
+  final HomePageController homePageController = Get.put(HomePageController());
+  @override
+  void initState() {
+    super.initState();
+    homePageController.filtersList[homePageController.selectedIndex].onTap();
+  }
 
   @override
   Widget build(BuildContext context) {

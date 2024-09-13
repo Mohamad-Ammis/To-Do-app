@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/category_page_controller.dart';
 import 'package:to_do_app/controllers/edit_task_controller.dart';
+import 'package:to_do_app/controllers/home_page.controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/views/home_page/home_page.dart';
@@ -16,6 +17,7 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
   final controller = Get.put(EditTaskController());
   final CategoryPageController categoryPageController =
       Get.put(CategoryPageController());
+  final HomePageController homePageController = Get.put(HomePageController());
   final TaskModel model;
   @override
   Widget build(BuildContext context) {
@@ -64,6 +66,8 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                           controller.selectedPriority = null;
                           controller.taskTitle = null;
                           taskController.getAllTasks();
+                              taskController.update();
+                          homePageController.selectedIndex = 0;
                           Get.offAll(const HomePage());
                         },
                         icon: Container(

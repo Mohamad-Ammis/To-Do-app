@@ -6,18 +6,16 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:get/get.dart';
-import 'package:to_do_app/controllers/profile_page_controller.dart'; // استيراد المتحكم
-
+import 'package:to_do_app/controllers/profile_page_controller.dart';
 class LocalNotificationsService extends GetxService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  // الحصول على المتحكم من GetX
   static final ProfilePageController controller =
       Get.put(ProfilePageController());
 
   static Future<void> init() async {
-    InitializationSettings settings = InitializationSettings(
+    InitializationSettings settings = const InitializationSettings(
         android: AndroidInitializationSettings('@mipmap/ic_launcher'),
         iOS: DarwinInitializationSettings());
     flutterLocalNotificationsPlugin.initialize(
@@ -32,7 +30,7 @@ class LocalNotificationsService extends GetxService {
       log('notification service is disabled so notification dismiss automaticlly');
       return;
     }
-    NotificationDetails details = NotificationDetails(
+    NotificationDetails details = const NotificationDetails(
       android: AndroidNotificationDetails('id 0', 'basic'),
     );
     flutterLocalNotificationsPlugin.show(
@@ -48,7 +46,7 @@ class LocalNotificationsService extends GetxService {
       log('notification service is disabled so notification dismiss automaticlly');
       return;
     }
-    NotificationDetails details = NotificationDetails(
+    NotificationDetails details = const NotificationDetails(
       android: AndroidNotificationDetails('id 1', 'repeated'),
     );
     flutterLocalNotificationsPlugin.periodicallyShow(
@@ -71,7 +69,7 @@ class LocalNotificationsService extends GetxService {
       return;
     }
     try {
-      NotificationDetails details = NotificationDetails(
+      NotificationDetails details = const NotificationDetails(
         android: AndroidNotificationDetails('id 2', 'Scheduled'),
       );
       tz.initializeTimeZones();
@@ -110,7 +108,7 @@ class LocalNotificationsService extends GetxService {
       return;
     }
     try {
-      NotificationDetails details = NotificationDetails(
+      NotificationDetails details = const NotificationDetails(
         android: AndroidNotificationDetails('id 3', 'Daily'),
       );
       tz.initializeTimeZones();
@@ -122,14 +120,14 @@ class LocalNotificationsService extends GetxService {
       var scheduledTime = tz.TZDateTime(tz.local, currentTime.year,
           currentTime.month, currentTime.day, 23, 24);
 
-      debugPrint('scheduledTime: ${scheduledTime}');
-      debugPrint('currentTime: ${currentTime}');
+      debugPrint('scheduledTime: $scheduledTime');
+      debugPrint('currentTime: $currentTime');
 
       if (scheduledTime.isBefore(currentTime)) {
-        scheduledTime = scheduledTime.add(Duration(days: 1));
+        scheduledTime = scheduledTime.add(const Duration(days: 1));
       }
 
-      debugPrint('Updated scheduledTime: ${scheduledTime}');
+      debugPrint('Updated scheduledTime: $scheduledTime');
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
         3,
@@ -142,7 +140,7 @@ class LocalNotificationsService extends GetxService {
         matchDateTimeComponents: DateTimeComponents.time,
       );
     } on Exception catch (e) {
-      debugPrint('Error: ${e}');
+      debugPrint('Error: $e');
     }
   }
 }

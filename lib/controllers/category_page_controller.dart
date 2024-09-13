@@ -31,13 +31,18 @@ class CategoryPageController extends GetxController {
         categoryBox.add(CategoryModel(
             title: title,
             color: Constans.kColors[selectedColorIndex].value,
-            icon: selectedIcon.codePoint));
+            icon: selectedIcon.codePoint
+            ));
       } else {
         log('cannot add category already exist');
       }
     } else {
       log('cannot add category with empty title');
     }
+    resetCategoryForm(); 
+  }
+
+  void resetCategoryForm() {
     selectedColorIndex = 0;
     selectedIcon = Icons.image_search_outlined;
     title = '';
@@ -46,11 +51,11 @@ class CategoryPageController extends GetxController {
   bool checkIfCategoryExist(String title) {
     bool isExist = false;
     var categoryBox = Hive.box<CategoryModel>(Constans.kCategoryBox);
-    categoryBox.values.forEach((category) {
+    for (var category in categoryBox.values) {
       if (category.title == title) {
         isExist = true;
       }
-    });
+    }
     return isExist;
   }
 
@@ -58,7 +63,7 @@ class CategoryPageController extends GetxController {
   void getCategories() {
     var categoryBox = Hive.box<CategoryModel>(Constans.kCategoryBox);
     categoriesList = categoryBox.values.toList();
-    debugPrint('categoriesList: ${categoriesList}');
+    debugPrint('categoriesList: $categoriesList');
   }
 
   deleteTasksWithCategory(String category) {

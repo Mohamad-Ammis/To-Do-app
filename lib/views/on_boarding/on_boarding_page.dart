@@ -20,7 +20,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   String userName = '';
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     formKey = GlobalKey();
     autovalidateMode = AutovalidateMode.disabled;
@@ -30,17 +29,15 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(16),
-        height: MediaQuery.sizeOf(context).height,
-        width: MediaQuery.sizeOf(context).width,
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(16),
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
               Assets.imagesOnBoarding,
             ),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-                const Color.fromARGB(80, 0, 0, 0), BlendMode.colorBurn),
+                Color.fromARGB(80, 0, 0, 0), BlendMode.colorBurn),
           ),
         ),
         child: Form(
@@ -59,7 +56,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     fontSize: 24,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               CustomTextField(
@@ -67,16 +64,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     userName = p0;
                   },
                   maxLines: 1,
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(
+                    Icons.person,
+                    color: Colors.black,
+                  ),
                   hintText: 'Your Name..',
                   hintStyle: TextStyle(color: Colors.black.withOpacity(.3)),
-                  textStyle: TextStyle(color: Colors.black),
-                  cursorColor: Theme.of(context).colorScheme.background,
+                  textStyle: const TextStyle(color: Colors.black),
+                  cursorColor: Theme.of(context).colorScheme.surface,
                   filled: true,
                   fillColor: const Color.fromARGB(255, 202, 199, 199),
                   focusedBorderColor: Colors.black,
                   enabledBorderColor: Colors.red),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               CustomButton(
@@ -84,7 +84,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   if (formKey.currentState!.validate()) {
                     debugPrint(userName);
                     userInfo.setString('user_name', userName);
-                    Get.offAll(() => HomePage());
+                    Get.offAll(() => const HomePage());
                   } else {
                     autovalidateMode = AutovalidateMode.onUserInteraction;
                     setState(() {});
@@ -98,7 +98,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 titleColor: Colors.white,
                 height: 56,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               )
             ],

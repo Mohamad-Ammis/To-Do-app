@@ -18,7 +18,7 @@ class CustomTableCalender extends StatelessWidget {
         init: AddTaskController(),
         builder: (controller) {
           return TableCalendar(
-            availableCalendarFormats: {CalendarFormat.month: 'Month'},
+            availableCalendarFormats: const {CalendarFormat.month: 'Month'},
             headerStyle: HeaderStyle(
                 decoration: BoxDecoration(
                   color: Get.isDarkMode
@@ -29,8 +29,8 @@ class CustomTableCalender extends StatelessWidget {
                     fontFamily: Constans.kFontFamily,
                     color: Get.isDarkMode ? Colors.white : Colors.black),
                 formatButtonTextStyle:
-                    TextStyle(fontFamily: Constans.kFontFamily),
-                headerMargin: EdgeInsets.only(bottom: 8)),
+                    const TextStyle(fontFamily: Constans.kFontFamily),
+                headerMargin: const EdgeInsets.only(bottom: 8)),
             firstDay: DateTime.now(),
             lastDay: DateTime.utc(2030, 3, 14),
             focusedDay: controller.selectedDate,
@@ -46,13 +46,13 @@ class CustomTableCalender extends StatelessWidget {
               controller.update();
             },
             calendarStyle: CalendarStyle(
-              todayDecoration: BoxDecoration(
+              todayDecoration: const BoxDecoration(
                   shape: BoxShape.circle, color: Colors.transparent),
               defaultTextStyle:
                   TextStyle(color: Theme.of(context).colorScheme.secondary),
               weekendTextStyle:
                   TextStyle(color: Theme.of(context).colorScheme.secondary),
-              disabledTextStyle: TextStyle(color: Colors.red),
+              disabledTextStyle: const TextStyle(color: Colors.red),
               selectedTextStyle: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,

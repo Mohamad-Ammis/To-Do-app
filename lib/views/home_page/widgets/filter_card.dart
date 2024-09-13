@@ -13,12 +13,12 @@ class FilterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      margin: EdgeInsets.symmetric(horizontal: 4),
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
           color: isActive ? Colors.blue : Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(8)),
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       child: Center(
         child: Text(
           title,

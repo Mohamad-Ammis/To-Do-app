@@ -16,8 +16,7 @@ class HomePageAppbar extends StatefulWidget implements PreferredSizeWidget {
   State<HomePageAppbar> createState() => _HomePageAppbarState();
 
   @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, 58);
+  Size get preferredSize => const Size(double.infinity, 58);
 }
 
 class _HomePageAppbarState extends State<HomePageAppbar> {
@@ -27,7 +26,7 @@ class _HomePageAppbarState extends State<HomePageAppbar> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        margin: EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.only(top: 10),
         child: AppBar(
           scrolledUnderElevation: 0,
           leading: GetBuilder<HomePageController>(
@@ -73,20 +72,20 @@ class _HomePageAppbarState extends State<HomePageAppbar> {
                     }
                   },
                   child: CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    backgroundColor: Colors.white,
                     radius: 30,
                     backgroundImage: (imagePath != null && imagePath.isNotEmpty)
                         ? FileImage(File(imagePath))
-                        : AssetImage(Assets.imagesPers),
+                        : const AssetImage(Assets.imagesPers),
                   ),
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             )
           ],
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
         ),
       ),
     );

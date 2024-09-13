@@ -24,7 +24,17 @@ class BadgetCard extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.symmetric(vertical: 16),
+          clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
+              boxShadow: !Get.isDarkMode
+                  ? [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(.2),
+                          blurRadius: 10,
+                          spreadRadius: 0.5,
+                          offset: const Offset(0, 2))
+                    ]
+                  : [],
               color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
           child: Row(
@@ -98,8 +108,7 @@ class BadgetCard extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                  color:
-                      Theme.of(context).colorScheme.background.withOpacity(.7),
+                  color: Theme.of(context).colorScheme.surface.withOpacity(.7),
                   borderRadius:
                       BorderRadius.circular(Constans.kCardBorderRadius)),
               child: Center(

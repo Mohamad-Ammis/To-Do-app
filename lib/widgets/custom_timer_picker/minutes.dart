@@ -11,7 +11,7 @@ class MinutesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 0),
+      padding: const EdgeInsets.symmetric(vertical: 0),
       child: AnimatedContainer(
         decoration: BoxDecoration(
             color: isSelected
@@ -20,10 +20,10 @@ class MinutesTile extends StatelessWidget {
                     : Colors.black
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         child: Center(
           child: Text(
-            minutes < 10 ? '0${minutes}' : minutes.toString(),
+            minutes < 10 ? '0$minutes' : minutes.toString(),
             style: TextStyle(
                 fontFamily: Constans.kFontFamily,
                 fontSize: 40,

@@ -10,11 +10,11 @@ class BadgetsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         foregroundColor:
             Theme.of(context).colorScheme.secondary.withOpacity(.86),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: const Text(
           'Badgets',
           style: TextStyle(

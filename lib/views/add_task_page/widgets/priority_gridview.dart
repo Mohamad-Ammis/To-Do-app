@@ -18,7 +18,7 @@ class PriorityGridView extends StatelessWidget {
         builder: (controller) {
           return GridView.builder(
               itemCount: 10,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3, mainAxisSpacing: 8, crossAxisSpacing: 8),
               itemBuilder: (context, index) {
                 return GestureDetector(

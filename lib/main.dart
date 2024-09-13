@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; 
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,10 +16,12 @@ import 'package:to_do_app/views/home_page/home_page.dart';
 import 'package:to_do_app/views/on_boarding/on_boarding_page.dart';
 
 late SharedPreferences userInfo;
+
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   userInfo = await SharedPreferences.getInstance();
-  debugPrint('userInfo: ${userInfo}');
   await Future.wait(
       [LocalNotificationsService.init(), WorkMangerService().init()]);
 
@@ -26,23 +30,39 @@ Future<void> main() async {
   await Hive.openBox<TaskModel>(Constans.kTasksBox);
   Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
   await Hive.openBox<CategoryModel>(Constans.kCategoryBox);
-  runApp( MyApp());
+
+  runApp(MyApp());
+  FlutterNativeSplash.remove(); 
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  MyApp({super.key});
 
-    final themeController = Get.put(ThemeController()); // استدعاء ThemeController
+  final themeController = Get.put(ThemeController());
+
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GetMaterialApp(
-          theme: themeController.isDarkMode.value ? darkTheme : lightTheme,
-          debugShowCheckedModeBanner: false,
-          home: userInfo.getString('user_name') != null
-              ? userInfo.getString('user_name') == ''
-                  ? OnBoardingPage()
-                  : HomePage()
-              : OnBoardingPage(),
-        ));
+    return Obx(() {
+      bool isDarkMode = themeController.isDarkMode.value;
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent, //app bar
+        systemNavigationBarColor: isDarkMode
+            ? Constans.kDarkBackgroundColor
+            : lightTheme.colorScheme.surface,
+        systemNavigationBarIconBrightness:
+            isDarkMode ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness:
+            isDarkMode ? Brightness.light : Brightness.dark,
+      ));
+
+      return GetMaterialApp(
+        theme: isDarkMode ? darkTheme : lightTheme,
+        debugShowCheckedModeBanner: false,
+        home: userInfo.getString('user_name') == null &&
+                userInfo.getString('user_name')!.isNotEmpty
+            ? const HomePage()
+            : const OnBoardingPage(), 
+      );
+    });
   }
 }

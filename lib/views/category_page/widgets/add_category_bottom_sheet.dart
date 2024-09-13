@@ -21,7 +21,7 @@ class AddCategoryBottomSheet extends StatelessWidget {
         showDragHandle: true,
         enableDrag: false,
         clipBehavior: Clip.hardEdge,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         onClosing: () {},
         builder: (context) {
           return Padding(
@@ -54,7 +54,7 @@ class AddCategoryBottomSheet extends StatelessWidget {
                       fillColor: Theme.of(context).colorScheme.primary,
                       focusedBorderColor: Colors.transparent,
                       enabledBorderColor: Colors.transparent),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Text(
@@ -66,11 +66,11 @@ class AddCategoryBottomSheet extends StatelessWidget {
                             .secondary
                             .withOpacity(.8)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  CategoryColorListview(isEditPage: false),
-                  SizedBox(
+                  const CategoryColorListview(isEditPage: false),
+                  const SizedBox(
                     height: 15,
                   ),
                   GetBuilder<CategoryPageController>(
@@ -103,8 +103,12 @@ class AddCategoryBottomSheet extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(32)),
-                                                backgroundColor: Constans
-                                                    .kCardBackgroundColor,
+                                                backgroundColor: Get.isDarkMode
+                                                    ? Constans
+                                                        .kCardBackgroundColor
+                                                    : Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
                                                 iconColor: Theme.of(context)
                                                     .colorScheme
                                                     .secondary,
@@ -113,8 +117,9 @@ class AddCategoryBottomSheet extends StatelessWidget {
                                                   style: TextStyle(
                                                       fontFamily:
                                                           Constans.kFontFamily,
-                                                      color: Constans
-                                                          .kWhiteElementColor,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .secondary,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 )));
@@ -132,7 +137,7 @@ class AddCategoryBottomSheet extends StatelessWidget {
                           ],
                         );
                       }),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomButton(

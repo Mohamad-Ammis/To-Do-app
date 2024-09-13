@@ -12,7 +12,7 @@ class CategoryDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
           '$title Tasks',
           style: TextStyle(
@@ -22,7 +22,7 @@ class CategoryDetailsPage extends StatelessWidget {
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: GetBuilder<CategoryPageController>(
           init: CategoryPageController(),
           builder: (controller) {

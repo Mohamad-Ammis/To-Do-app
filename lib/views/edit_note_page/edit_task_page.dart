@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart'; // استيراد مكتبة intl لتنسيق الوقت والتاريخ
 import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/controllers/home_page.controller.dart';
-import 'package:to_do_app/controllers/navigation_controller.dart';
 import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_note_form.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_task_appbar.dart';
 import 'package:to_do_app/views/edit_note_page/widgets/edit_task_footer.dart';
-import 'package:to_do_app/widgets/color_List_view.dart';
+import 'package:to_do_app/widgets/color_list_view.dart';
 import 'package:to_do_app/widgets/custom_timer_picker/time_picker.dart';
 
 class EditTaskPage extends StatelessWidget {
@@ -43,7 +41,7 @@ class EditTaskPage extends StatelessWidget {
       appBar: EditTaskAppbar(
         model: model,
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -79,7 +77,7 @@ class EditTaskPage extends StatelessWidget {
               ),
             ),
             model.isCompleted
-                ? CustomButton(
+                ? const CustomButton(
                     margin: 0,
                     title: 'C O M P L E T E D',
                     color: Colors.green,
@@ -98,7 +96,7 @@ class EditTaskPage extends StatelessWidget {
                           Get.back();
                         },
                       )
-                    : CustomButton(
+                    : const CustomButton(
                         margin: 0,
                         title: 'Missed Task',
                         color: Colors.red,

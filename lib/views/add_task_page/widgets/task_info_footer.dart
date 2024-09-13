@@ -26,8 +26,8 @@ class TaskInfoFooter extends StatelessWidget {
                               .colorScheme
                               .secondary
                               .withOpacity(.9)))
-                  : SizedBox(),
-              SizedBox(
+                  : const SizedBox(),
+              const SizedBox(
                 height: 5,
               ),
               controller.setTime
@@ -39,8 +39,8 @@ class TaskInfoFooter extends StatelessWidget {
                               .colorScheme
                               .secondary
                               .withOpacity(.9)))
-                  : SizedBox(),
-              SizedBox(
+                  : const SizedBox(),
+              const SizedBox(
                 height: 5,
               ),
               controller.setPriority
@@ -53,7 +53,7 @@ class TaskInfoFooter extends StatelessWidget {
                               .secondary
                               .withOpacity(.9)),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ],
           );
         });

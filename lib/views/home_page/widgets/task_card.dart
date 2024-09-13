@@ -16,7 +16,7 @@ class TaskCard extends StatelessWidget {
     return Container(
       clipBehavior: Clip.hardEdge,
       width: MediaQuery.sizeOf(context).width,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
         color: Color(model.color),
         borderRadius: BorderRadius.circular(Constans.kCardBorderRadius),
@@ -30,7 +30,8 @@ class TaskCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -45,26 +46,26 @@ class TaskCard extends StatelessWidget {
                         : model.priority < 7
                             ? "Medium"
                             : "Low",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontFamily: Constans.kFontFamily,
                         fontWeight: FontWeight.bold,
                         fontSize: 12),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Text(
                   model.title,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontFamily: Constans.kFontFamily,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -91,8 +92,8 @@ class TaskCard extends StatelessWidget {
                   child: Align(
                   alignment: Alignment.topRight,
                   child: Container(
-                    padding: EdgeInsets.all(6),
-                    child: Icon(Icons.done),
+                    padding: const EdgeInsets.all(6),
+                    child: const Icon(Icons.done),
                   ),
                 ))
               : Positioned.fill(
@@ -108,7 +109,7 @@ class TaskCard extends StatelessWidget {
                               taskController.update();
                             },
                             child: Container(
-                              padding: EdgeInsets.all(6),
+                              padding: const EdgeInsets.all(6),
                               decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
@@ -116,10 +117,10 @@ class TaskCard extends StatelessWidget {
                                         color: Colors.black.withOpacity(.3))
                                   ],
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       bottomLeft: Radius.circular(
                                           Constans.kCardBorderRadius))),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.delete,
                                 color: Colors.black,
                               ),

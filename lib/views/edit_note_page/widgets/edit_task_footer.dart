@@ -27,7 +27,7 @@ class EditTaskFooter extends StatelessWidget {
                           .colorScheme
                           .secondary
                           .withOpacity(.9))),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
@@ -40,7 +40,7 @@ class EditTaskFooter extends StatelessWidget {
                           .colorScheme
                           .secondary
                           .withOpacity(.9))),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(

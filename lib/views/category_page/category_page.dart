@@ -14,9 +14,9 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
           'Categories',
           style: TextStyle(
@@ -27,7 +27,7 @@ class CategoryPage extends StatelessWidget {
         scrolledUnderElevation: 0,
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 16),
+            margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
               shape: BoxShape.circle,
@@ -47,7 +47,7 @@ class CategoryPage extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
+      body: const Column(
         children: [
           Expanded(
               child: CategoryGridview(

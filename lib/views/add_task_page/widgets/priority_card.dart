@@ -14,15 +14,15 @@ class PriorityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
-      padding: EdgeInsets.all(12),
+      duration: const Duration(milliseconds: 300),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           color: controller.selectedPriority == priority
               ? Get.isDarkMode
-                  ? Color(0xFF8687E7)
+                  ? const Color(0xFF8687E7)
                   : Colors.blueAccent
-              : Color(0xFF272727)),
+              : const Color(0xFF272727)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

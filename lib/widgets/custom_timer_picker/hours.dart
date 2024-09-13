@@ -9,7 +9,7 @@ class HoursTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 0),
+      padding: const EdgeInsets.symmetric(vertical: 0),
       child: AnimatedContainer(
         decoration: BoxDecoration(
             color: isSelected
@@ -18,7 +18,7 @@ class HoursTile extends StatelessWidget {
                     : Colors.black
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         child: Center(
           child: Text(
             hours.toString(),

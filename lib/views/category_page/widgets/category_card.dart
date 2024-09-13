@@ -31,14 +31,15 @@ class CategoryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Icon(
-                IconData(model.icon, fontFamily: 'MaterialIcons'),
+                IconData(model.icon,
+                    fontFamily: 'MaterialIcons'), 
                 color: Colors.white,
                 size: 35,
               ),
               Text(
                 model.title,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontFamily: Constans.kFontFamily),
@@ -59,7 +60,7 @@ class CategoryCard extends StatelessWidget {
                 taskController.getAllTasks();
               },
               child: Container(
-                padding: EdgeInsets.all(4),
+                padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                     color: Get.isDarkMode
                         ? Theme.of(context)
@@ -67,11 +68,11 @@ class CategoryCard extends StatelessWidget {
                             .secondary
                             .withOpacity(.9)
                         : Colors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(Constans.kCardBorderRadius),
                         bottomLeft:
                             Radius.circular(Constans.kCardBorderRadius))),
-                child: Icon(
+                child: const Icon(
                   Icons.delete_forever,
                   size: 20,
                   color: Colors.black,

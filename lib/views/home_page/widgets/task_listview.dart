@@ -38,7 +38,7 @@ class TasksListView extends StatelessWidget {
                       log('messageasdjkalsdjaksldsjkdsdadsl');
                     }
                     return index == controller.displayTasksList.length
-                        ? SizedBox(
+                        ? const SizedBox(
                             height: 100,
                           )
                         : GestureDetector(

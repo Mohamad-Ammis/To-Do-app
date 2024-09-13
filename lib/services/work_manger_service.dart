@@ -18,7 +18,7 @@ class WorkMangerService {
     await Workmanager().initialize(
         executeTask, // The top level function, aka callbackDispatcher
         isInDebugMode:
-            true // If enabled it will post a notification whenever the task is running. Handy for debugging tasks
+            false // If enabled it will post a notification whenever the task is running. Handy for debugging tasks
         );
     //register task
     registerTask();
@@ -30,7 +30,7 @@ class WorkMangerService {
   }
 }
 
-@pragma('vm:entry-point') 
+@pragma('vm:entry-point')
 void executeTask() {
   Workmanager().executeTask((task, inputData) async {
     // تهيئة Hive وفتح الصناديق المطلوبة هنا
@@ -39,10 +39,9 @@ void executeTask() {
     await Hive.openBox<TaskModel>(Constans.kTasksBox);
     Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
     await Hive.openBox<CategoryModel>(Constans.kCategoryBox);
-    
-    // الآن يمكنك عرض الإشعار
+
     await LocalNotificationsService.showDailyScheduledNotification();
-    
+
     return Future.value(true);
   });
 }

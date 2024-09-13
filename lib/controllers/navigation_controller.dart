@@ -18,6 +18,6 @@ class NavigationController extends GetxController {
     const HomePageBody(),
     CategoryPage(),
     const AddTaskPage(),
-    ProfilePage()
+    const ProfilePage()
   ];
 }

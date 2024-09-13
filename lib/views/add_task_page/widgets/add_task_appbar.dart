@@ -29,7 +29,7 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
         init: FormController(),
         builder: (formController) {
           return AppBar(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             title: Text(
               "Add Task",
               style: TextStyle(

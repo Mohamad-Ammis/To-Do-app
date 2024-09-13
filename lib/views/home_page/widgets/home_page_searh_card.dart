@@ -11,14 +11,14 @@ class HomePageSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16,
       ),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
       width: MediaQuery.sizeOf(context).width,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Row(
         children: [
           Icon(
@@ -35,13 +35,17 @@ class HomePageSearchBar extends StatelessWidget {
               controller.update();
             },
             decoration: InputDecoration(
-                border: OutlineInputBorder(borderSide: BorderSide.none),
-                enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
-                errorBorder: OutlineInputBorder(borderSide: BorderSide.none),
-                disabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
+                border: const OutlineInputBorder(borderSide: BorderSide.none),
+                enabledBorder:
+                    const OutlineInputBorder(borderSide: BorderSide.none),
+                errorBorder:
+                    const OutlineInputBorder(borderSide: BorderSide.none),
+                disabledBorder:
+                    const OutlineInputBorder(borderSide: BorderSide.none),
+                focusedBorder:
+                    const OutlineInputBorder(borderSide: BorderSide.none),
                 focusedErrorBorder:
-                    OutlineInputBorder(borderSide: BorderSide.none),
+                    const OutlineInputBorder(borderSide: BorderSide.none),
                 hintText: 'Search here .....',
                 hintStyle: TextStyle(
                     color:

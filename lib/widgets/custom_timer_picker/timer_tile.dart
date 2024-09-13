@@ -7,7 +7,7 @@ class TimerTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.blue,
-      child: Center(
+      child: const Center(
         child: Text('data'),
       ),
     );

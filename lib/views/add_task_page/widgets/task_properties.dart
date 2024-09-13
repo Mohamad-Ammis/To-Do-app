@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/constans.dart';
 import 'package:to_do_app/utils/app_images.dart';
 import 'package:to_do_app/views/add_task_page/widgets/priority_dialog.dart';
 import 'package:to_do_app/widgets/custom_date_picker/custom_date_picker.dart';
@@ -38,7 +37,7 @@ class TaskProperties extends StatelessWidget {
                 return AlertDialog(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   contentPadding: EdgeInsets.zero,
-                  content: Container(
+                  content: const SizedBox(
                     width: 300,
                     height: 450,
                     child: CustomTimerPicker(
@@ -60,7 +59,7 @@ class TaskProperties extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) {
-                return PriorityDialog(
+                return const PriorityDialog(
                   isEditingPage: false,
                 );
               },

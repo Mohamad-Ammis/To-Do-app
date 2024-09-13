@@ -8,7 +8,7 @@ import 'package:to_do_app/views/add_task_page/widgets/add_task_form.dart';
 import 'package:to_do_app/views/add_task_page/widgets/task_info_footer.dart';
 import 'package:to_do_app/views/add_task_page/widgets/task_properties.dart';
 import 'package:to_do_app/views/category_page/widgets/category_card.dart';
-import 'package:to_do_app/widgets/color_List_view.dart';
+import 'package:to_do_app/widgets/color_list_view.dart';
 
 class AddTaskPage extends StatelessWidget {
   const AddTaskPage({super.key});
@@ -17,7 +17,7 @@ class AddTaskPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AddTaskAppbar(),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -25,7 +25,7 @@ class AddTaskPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AddTaskForm(),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -36,13 +36,13 @@ class AddTaskPage extends StatelessWidget {
                     fontFamily: Constans.kFontFamily,
                     fontSize: 16),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              ColorListView(
+              const ColorListView(
                 isEditPage: false,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -54,15 +54,15 @@ class AddTaskPage extends StatelessWidget {
                     fontFamily: Constans.kFontFamily,
                     fontSize: 16),
               ),
-              TaskProperties(),
-              SizedBox(
+              const TaskProperties(),
+              const SizedBox(
                 height: 20,
               ),
-              TaskInfoFooter(),
-              SizedBox(
+              const TaskInfoFooter(),
+              const SizedBox(
                 height: 20,
               ),
-              TaskCategorySection(
+              const TaskCategorySection(
                 isEditPage: false,
                 model: null,
               )
@@ -103,34 +103,30 @@ class TaskCategorySection extends StatelessWidget {
                         fontFamily: Constans.kFontFamily,
                         fontSize: 16),
                   ),
-                  Container(
-                    child: IconButton(
-                        onPressed: () {
-                          controller.showCategories =
-                              !controller.showCategories;
-                          controller.update();
-                        },
-                        icon: Icon(
-                          controller.showCategories
-                              ? Icons.arrow_circle_up_rounded
-                              : Icons.arrow_drop_down_circle,
-                          color: Get.isDarkMode ? Colors.white : Colors.black,
-                        )),
-                  )
+                  IconButton(
+                      onPressed: () {
+                        controller.showCategories = !controller.showCategories;
+                        controller.update();
+                      },
+                      icon: Icon(
+                        controller.showCategories
+                            ? Icons.arrow_circle_up_rounded
+                            : Icons.arrow_drop_down_circle,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
+                      ))
                 ],
               ),
               if (controller.showCategories)
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
               if (controller.showCategories)
-                Container(
-                    child: SelectCategoryGrid(
-                  isEditPage: isEditPage,
-                  model: model,
-                  showDeleteIcon: false,
-                )),
-              SizedBox(
+                SelectCategoryGrid(
+                                  isEditPage: isEditPage,
+                                  model: model,
+                                  showDeleteIcon: false,
+                                ),
+              const SizedBox(
                 height: 85,
               )
             ],
@@ -158,7 +154,7 @@ class SelectCategoryGrid extends StatelessWidget {
         builder: (controller) {
           return GridView.builder(
             itemCount: controller.categoriesList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,

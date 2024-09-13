@@ -30,7 +30,6 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
 
   @override
   void dispose() {
-    // Dispose the controllers
     hoursController.dispose();
     minutesController.dispose();
     super.dispose();
@@ -46,7 +45,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
           builder: (taskController) {
             return Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
@@ -55,7 +54,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                       Expanded(
                         child: Column(
                           children: [
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               'Hours',
                               style: TextStyle(
@@ -64,7 +63,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                               ),
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 width: 70,
                                 child: ListWheelScrollView.useDelegate(
                                   controller: hoursController,
@@ -80,7 +79,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                                   itemExtent: 50,
                                   perspective: 0.005,
                                   diameterRatio: 1.2,
-                                  physics: FixedExtentScrollPhysics(),
+                                  physics: const FixedExtentScrollPhysics(),
                                   childDelegate: ListWheelChildBuilderDelegate(
                                     childCount: 24,
                                     builder: (context, index) {
@@ -98,11 +97,11 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: Column(
                           children: [
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               'Minutes',
                               style: TextStyle(
@@ -111,7 +110,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                               ),
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 width: 70,
                                 child: ListWheelScrollView.useDelegate(
                                   controller: minutesController,
@@ -128,7 +127,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
                                   itemExtent: 50,
                                   perspective: 0.005,
                                   diameterRatio: 1.2,
-                                  physics: FixedExtentScrollPhysics(),
+                                  physics: const FixedExtentScrollPhysics(),
                                   childDelegate: ListWheelChildBuilderDelegate(
                                     childCount: 60,
                                     builder: (context, index) {
@@ -172,7 +171,7 @@ class _CustomTimerPickerState extends State<CustomTimerPicker> {
           right: 10,
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context).pop(); // Close the dialog
+              Navigator.of(context).pop(); 
             },
             child: Icon(
               Icons.close,

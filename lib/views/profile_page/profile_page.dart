@@ -22,7 +22,6 @@ class _ProfilePageState extends State<ProfilePage> {
   final TaskController taskController = Get.put(TaskController());
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller.toDoTaskCount = taskController.getToDoTasks().length;
     controller.completedTaskCount = taskController.getCompletedTasks().length;
@@ -33,9 +32,11 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Get.isDarkMode
+            ? Colors.transparent
+            : Theme.of(context).colorScheme.surface,
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -48,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 title: 'Badgets',
                 onTap: () {
                   Get.to(() => BadgetsPage(
-                        completedTaskCount: 5,
+                        completedTaskCount: controller.completedTaskCount,
                       ));
                 },
               ),

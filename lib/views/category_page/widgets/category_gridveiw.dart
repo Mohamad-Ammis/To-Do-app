@@ -6,7 +6,8 @@ import 'package:to_do_app/views/category_page/widgets/category_card.dart';
 
 class CategoryGridview extends StatelessWidget {
   const CategoryGridview({
-    super.key, required this.showDeleteIcon,
+    super.key,
+    required this.showDeleteIcon,
   });
   final bool showDeleteIcon;
   @override
@@ -18,7 +19,7 @@ class CategoryGridview extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: GridView.builder(
                 itemCount: controller.categoriesList.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10),

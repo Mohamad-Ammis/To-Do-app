@@ -14,8 +14,8 @@ class CustomBottomNavbar extends StatelessWidget {
           return Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              margin: EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius:
                       BorderRadius.circular(Constans.kCardBorderRadius),
@@ -23,11 +23,11 @@ class CustomBottomNavbar extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                         color: Colors.white.withOpacity(.08),
-                        offset: Offset(0, 10),
+                        offset: const Offset(0, 10),
                         blurRadius: 10),
                     BoxShadow(
                         color: Colors.white.withOpacity(.08),
-                        offset: Offset(0, -10),
+                        offset: const Offset(0, -10),
                         blurRadius: 10)
                   ]),
               height: 70,
@@ -43,8 +43,8 @@ class CustomBottomNavbar extends StatelessWidget {
                       },
                       child: AnimatedContainer(
                         width: 60,
-                        padding: EdgeInsets.only(bottom: 8),
-                        duration: Duration(milliseconds: 300),
+                        padding: const EdgeInsets.only(bottom: 8),
+                        duration: const Duration(milliseconds: 300),
                         decoration: BoxDecoration(
                             color: controller.selectedIndex ==
                                     controller.navbarItems.indexOf(e)
@@ -52,7 +52,7 @@ class CustomBottomNavbar extends StatelessWidget {
                                     ? Colors.white.withOpacity(.05)
                                     : Colors.black.withOpacity(.025)
                                 : Colors.transparent,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 bottomRight:
                                     Radius.circular(Constans.kCardBorderRadius),
                                 bottomLeft: Radius.circular(
@@ -68,7 +68,7 @@ class CustomBottomNavbar extends StatelessWidget {
                                   ? true
                                   : false,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 4,
                             ),
                             Icon(
@@ -115,7 +115,7 @@ class AnimatedBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       width: isActive ? 60 : 0,
       height: 4,
       decoration: BoxDecoration(

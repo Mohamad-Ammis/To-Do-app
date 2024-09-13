@@ -21,7 +21,6 @@ class _ColorListViewState extends State<ColorListView> {
   final editTaskController = Get.put(EditTaskController());
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     currentIndex = widget.selectedColorIndex ?? 0;
   }

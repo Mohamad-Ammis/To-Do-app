@@ -17,7 +17,6 @@ class ImageAndTasksSection extends StatefulWidget {
 
 class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
   final ImagePickerService _imagePickerService = ImagePickerService();
-  // final controller = Get.put(ProfilePageController());
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,11 +39,11 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
                 }
               },
               child: CircleAvatar(
-                backgroundColor: Theme.of(context).colorScheme.secondary,
+                backgroundColor: Colors.white,
                 radius: 50,
                 backgroundImage: (imagePath != null && imagePath.isNotEmpty)
                     ? FileImage(File(imagePath))
-                    : AssetImage(Assets.imagesPers),
+                    : const AssetImage(Assets.imagesPers),
               ),
             );
           },
@@ -72,7 +71,7 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
                         color: Colors.redAccent,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text('${controller.toDoTaskCount} Task left',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontFamily: Constans.kFontFamily,
                           fontSize: 16,
@@ -85,7 +84,7 @@ class _ImageAndTasksSectionState extends State<ImageAndTasksSection> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text('${controller.completedTaskCount} Task done',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

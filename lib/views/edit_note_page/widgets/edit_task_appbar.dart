@@ -20,7 +20,7 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       title: Text(
         "Edit Task",
         style: TextStyle(
@@ -56,14 +56,6 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                               : model.endTime;
                           model.priority =
                               controller.selectedPriority ?? model.priority;
-                          // List<String> categories = [];
-                          // for (var i = 0;
-                          //     i < categoryPageController.selectedCategories.length;
-                          //     i++) {
-                          //   categories.add(
-                          //       categoryPageController.selectedCategories[i].title);
-                          // }
-                          // model.categories = categories;
                           model.save();
                           controller.selectedColorIndex = null;
                           controller.selectedDate = null;
@@ -97,6 +89,5 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size(double.infinity, 58);
 }

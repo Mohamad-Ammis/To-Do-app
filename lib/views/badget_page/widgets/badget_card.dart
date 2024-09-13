@@ -67,7 +67,7 @@ class BadgetCard extends StatelessWidget {
                 width: 20,
               ),
               SizedBox(
-                width: MediaQuery.sizeOf(context).width / 2,
+                width: MediaQuery.sizeOf(context).width / 2.2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -98,8 +98,9 @@ class BadgetCard extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                medalImage,
                 width: 60,
+                medalImage,
+                fit: BoxFit.contain,
               )
             ],
           ),

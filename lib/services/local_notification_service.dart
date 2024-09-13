@@ -59,7 +59,7 @@ class LocalNotificationsService extends GetxService {
     );
   }
 
-  static Future<void> showScheduledNotification({
+  static Future<void> showScheduledEndTaskNotification({
     required String title,
     required DateTime date,
     required int hour,
@@ -98,6 +98,54 @@ class LocalNotificationsService extends GetxService {
     }
   }
 
+  static Future<void> showScheduledNotification({
+    required String title,
+    required DateTime date,
+    required int hour,
+    required int minute,
+  }) async {
+    if (!controller.notificationsEnabled.value) {
+      log('notification service is disabled so notification dismiss automaticlly');
+      return;
+    }
+    try {
+      NotificationDetails details = const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'id 2',
+          'Scheduled',
+          // يمكنك تعيين ألوان وأيقونات هنا إذا لزم الأمر
+        ),
+      );
+
+      tz.initializeTimeZones();
+      final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
+      tz.setLocalLocation(tz.getLocation(currentTimeZone));
+
+      // حساب الوقت المعدل ليكون قبل 15 دقيقة من الوقت المحدد
+      final tz.TZDateTime originalDate = tz.TZDateTime(
+          tz.local, date.year, date.month, date.day, hour, minute);
+      final tz.TZDateTime adjustedDate =
+          originalDate.subtract(const Duration(minutes: 30));
+
+      if (adjustedDate.isBefore(tz.TZDateTime.now(tz.local))) {
+        debugPrint('You will not receive notification for this task');
+        return;
+      }
+
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+        2,
+        title,
+        'Your task time will end after 30 minutes,let\'s finish it',
+        adjustedDate, // استخدام الوقت المعدل هنا
+        details,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+      );
+    } catch (e) {
+      debugPrint('Error scheduling notification: $e');
+    }
+  }
+
   static Future<void> cancelAllNotifications() async {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
@@ -119,7 +167,7 @@ class LocalNotificationsService extends GetxService {
       log(tz.local.name);
       final currentTime = tz.TZDateTime.now(tz.local);
       var scheduledTime = tz.TZDateTime(tz.local, currentTime.year,
-          currentTime.month, currentTime.day, 23, 24);
+          currentTime.month, currentTime.day, 22, 30);
 
       debugPrint('scheduledTime: $scheduledTime');
       debugPrint('currentTime: $currentTime');
@@ -132,8 +180,8 @@ class LocalNotificationsService extends GetxService {
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
         3,
-        'Have a productive dat',
-        'write your task and work on it to have a productive day',
+        'Have a productive day',
+        'write your task and plan for tomorrow , remember no time to waste',
         scheduledTime,
         details,
         uiLocalNotificationDateInterpretation:

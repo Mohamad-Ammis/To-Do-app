@@ -55,6 +55,12 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                                       date: controller.selectedDate,
                                       hour: controller.selectedHourIndex,
                                       minute: controller.selectedMinuteIndex);
+                              LocalNotificationsService
+                                  .showScheduledEndTaskNotification(
+                                      title: controller.taskTitle,
+                                      date: controller.selectedDate,
+                                      hour: controller.selectedHourIndex,
+                                      minute: controller.selectedMinuteIndex);
                               debugPrint('validate');
                               List<String> categories = [];
                               for (int i = 0;

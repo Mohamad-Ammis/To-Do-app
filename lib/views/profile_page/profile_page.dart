@@ -30,12 +30,12 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Get.isDarkMode
-            ? Colors.transparent
-            : Theme.of(context).colorScheme.surface,
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   backgroundColor: Get.isDarkMode
+      //       ? Colors.transparent
+      //       : Theme.of(context).colorScheme.surface,
+      // ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SingleChildScrollView(
         child: Padding(
@@ -43,6 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 60,),
               const ImageAndTasksSection(),
               CustomProfileListTile(
                 icon: FontAwesomeIcons.trophy,
@@ -105,6 +106,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     const Text('Log out', style: TextStyle(color: Colors.red)),
                 onTap: () {},
               ),
+              SizedBox(
+                height: 80,
+              )
             ],
           ),
         ),

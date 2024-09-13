@@ -7,6 +7,7 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:get/get.dart';
 import 'package:to_do_app/controllers/profile_page_controller.dart';
+
 class LocalNotificationsService extends GetxService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -16,7 +17,7 @@ class LocalNotificationsService extends GetxService {
 
   static Future<void> init() async {
     InitializationSettings settings = const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        android: AndroidInitializationSettings('@drawable/ic_notification'),
         iOS: DarwinInitializationSettings());
     flutterLocalNotificationsPlugin.initialize(
       settings,

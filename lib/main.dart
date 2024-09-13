@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; 
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -32,7 +32,7 @@ Future<void> main() async {
   await Hive.openBox<CategoryModel>(Constans.kCategoryBox);
 
   runApp(MyApp());
-  FlutterNativeSplash.remove(); 
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -58,10 +58,10 @@ class MyApp extends StatelessWidget {
       return GetMaterialApp(
         theme: isDarkMode ? darkTheme : lightTheme,
         debugShowCheckedModeBanner: false,
-        home: userInfo.getString('user_name') == null &&
+        home: userInfo.getString('user_name') != null &&
                 userInfo.getString('user_name')!.isNotEmpty
             ? const HomePage()
-            : const OnBoardingPage(), 
+            : const OnBoardingPage(),
       );
     });
   }

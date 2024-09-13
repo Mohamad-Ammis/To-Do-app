@@ -10,7 +10,7 @@ class NavigationController extends GetxController {
   final List<NavbarModel> navbarItems = [
     NavbarModel(icon: Icons.home, title: 'Home'),
     NavbarModel(icon: Icons.category_rounded, title: 'Category'),
-    NavbarModel(icon: Icons.add, title: 'add'),
+    NavbarModel(icon: Icons.add, title: 'New'),
     NavbarModel(icon: Icons.person, title: 'profile'),
   ];
   int selectedIndex = 0;

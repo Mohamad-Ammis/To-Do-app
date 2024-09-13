@@ -2,15 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:to_do_app/controllers/profile_page_controller.dart';
+import 'package:to_do_app/controllers/task_controller.dart';
 import 'package:to_do_app/controllers/theme_controller.dart';
 import 'package:to_do_app/views/badget_page/badget_page.dart';
 import 'package:to_do_app/views/profile_page/widgets/custom_profile_list_tile.dart';
 import 'package:to_do_app/views/profile_page/widgets/image_tasks_section.dart';
 
-class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   final themeController = Get.find<ThemeController>();
+
   final controller = Get.put(ProfilePageController());
+  final TaskController taskController = Get.put(TaskController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.toDoTaskCount = taskController.getToDoTasks().length;
+    controller.completedTaskCount = taskController.getCompletedTasks().length;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

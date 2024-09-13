@@ -11,7 +11,7 @@ class TaskController extends GetxController {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
     bool taskExist = checkIfTaskExist(model);
     if (taskExist) {
-      showInfoSnackBar('Sorry', 'You already have task match this informatiom')
+      showInfoSnackBar('Sorry', 'You already have task match this information')
           .show(context);
     } else {
       await taskBox.add(model);
@@ -23,19 +23,13 @@ class TaskController extends GetxController {
     List<TaskModel> tasks = taskBox.values.toList();
 
     for (var task in tasks) {
-      debugPrint(
-          'Comparing with task: ${task.title}, ${task.endDate}, ${task.endTime}, ${task.priority}');
-      debugPrint(
-          'your task: ${model.title}, ${model.endDate}, ${model.endTime}, ${model.priority}');
-
-      DateTime taskEndDate = DateTime.parse(task.endDate);
-      DateTime modelEndDate = DateTime.parse(model.endDate);
+      DateTime taskEndDateTime =
+          _combineDateAndTime(task.endDate, task.endTime);
+      DateTime modelEndDateTime =
+          _combineDateAndTime(model.endDate, model.endTime);
 
       if (task.title == model.title &&
-          taskEndDate.year == modelEndDate.year &&
-          taskEndDate.month == modelEndDate.month &&
-          taskEndDate.day == modelEndDate.day &&
-          task.endTime == model.endTime &&
+          taskEndDateTime.isAtSameMomentAs(modelEndDateTime) &&
           task.priority == model.priority) {
         debugPrint('Task already exists!');
         return true;
@@ -45,8 +39,18 @@ class TaskController extends GetxController {
     return false;
   }
 
+  DateTime _combineDateAndTime(String date, String time) {
+    DateTime parsedDate = DateTime.parse(date);
+    List<String> timeParts = time.split(':');
+    int hours = int.parse(timeParts[0]);
+    int minutes = int.parse(timeParts[1]);
+    return DateTime(
+        parsedDate.year, parsedDate.month, parsedDate.day, hours, minutes);
+  }
+
   List<TaskModel> displayTasksList = [];
   List<TaskModel> tasks = [];
+
   List<TaskModel> getAllTasks() {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
 
@@ -55,34 +59,32 @@ class TaskController extends GetxController {
     }).toList();
 
     allTasks.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
 
     debugPrint('allTasks: $allTasks');
     displayTasksList = allTasks;
     update();
-    for (var i = 0; i < allTasks.length; i++) {
-      debugPrint("task categories${allTasks[i].categories}");
-    }
     return allTasks;
   }
 
   getToDoTasks() {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
-    DateTime today = DateTime.now();
+    DateTime now = DateTime.now();
     tasks = taskBox.values.where((task) {
-      DateTime taskDate = DateTime.parse(task.endDate);
-      return (taskDate.isAfter(today) || taskDate.isAtSameMomentAs(today)) &&
+      DateTime taskDateTime = _combineDateAndTime(task.endDate, task.endTime);
+      return (taskDateTime.isAfter(now) ||
+              taskDateTime.isAtSameMomentAs(now)) &&
           task.title.isNotEmpty &&
           task.isCompleted == false;
     }).toList();
 
     tasks.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
 
     debugPrint('tasks: $tasks');
@@ -94,22 +96,18 @@ class TaskController extends GetxController {
 
   getMissingTasks() {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
-    DateTime today = DateTime.now();
+    DateTime now = DateTime.now();
 
     tasksBeforeToday = taskBox.values.where((task) {
-      DateTime taskDate = DateTime.parse(task.endDate);
-      return taskDate.isBefore(today) && task.title.isNotEmpty;
+      DateTime taskDateTime = _combineDateAndTime(task.endDate, task.endTime);
+      return taskDateTime.isBefore(now) && task.title.isNotEmpty;
     }).toList();
 
     tasksBeforeToday.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
-
-    for (var element in tasksBeforeToday) {
-      debugPrint(element.endDate);
-    }
 
     debugPrint('tasksBeforeToday: $tasksBeforeToday');
     displayTasksList = tasksBeforeToday;
@@ -118,6 +116,7 @@ class TaskController extends GetxController {
 
   List<TaskModel> searchTasksList = [];
   final homeController = Get.put(HomePageController());
+
   searchTasks(String? searchText) {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
     if (searchText == null || searchText.isEmpty) {
@@ -131,23 +130,18 @@ class TaskController extends GetxController {
     }
 
     searchTasksList.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
 
-    for (var element in searchTasksList) {
-      debugPrint(element.title);
-    }
-
-    debugPrint('tasksWithTitleContaining: $searchTasksList');
+    debugPrint('searchTasksList: $searchTasksList');
     displayTasksList = searchTasksList;
     return searchTasksList;
   }
 
   deleteTasksWithEmptyTitle() {
     var taskBox = Hive.box<TaskModel>(Constans.kTasksBox);
-
     var tasksWithEmptyTitle =
         taskBox.values.where((task) => task.title.isEmpty).toList();
 
@@ -167,9 +161,9 @@ class TaskController extends GetxController {
     }).toList();
 
     highPriorityTasks.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
 
     debugPrint('High Priority Tasks: $highPriorityTasks');
@@ -185,9 +179,9 @@ class TaskController extends GetxController {
     }).toList();
 
     mediumPriorityTasks.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
 
     debugPrint('Medium Priority Tasks: $mediumPriorityTasks');
@@ -203,9 +197,9 @@ class TaskController extends GetxController {
     }).toList();
 
     lowPriorityTasks.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
 
     debugPrint('Low Priority Tasks: $lowPriorityTasks');
@@ -219,9 +213,9 @@ class TaskController extends GetxController {
       return task.isCompleted == true;
     }).toList();
     completedTasks.sort((a, b) {
-      DateTime dateA = DateTime.parse(a.endDate);
-      DateTime dateB = DateTime.parse(b.endDate);
-      return dateA.compareTo(dateB);
+      DateTime dateTimeA = _combineDateAndTime(a.endDate, a.endTime);
+      DateTime dateTimeB = _combineDateAndTime(b.endDate, b.endTime);
+      return dateTimeA.compareTo(dateTimeB);
     });
 
     debugPrint('completed Tasks: $completedTasks');

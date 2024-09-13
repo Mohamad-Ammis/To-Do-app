@@ -22,6 +22,9 @@ class CategoryCard extends StatelessWidget {
         Container(
           width: MediaQuery.sizeOf(context).width / 3,
           decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 10)
+              ],
               color: Color(model.color),
               borderRadius: BorderRadius.circular(Constans.kCardBorderRadius)),
           child: Column(

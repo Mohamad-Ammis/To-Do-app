@@ -86,38 +86,47 @@ class TaskCard extends StatelessWidget {
               ],
             ),
           ),
-          Positioned.fill(
-              child: GetBuilder<TaskController>(
-                  init: TaskController(),
-                  builder: (taskController) {
-                    return Align(
-                      alignment: Alignment.topRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          model.delete();
-                          taskController.getAllTasks();
-                          taskController.update();
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 10,
-                                    color: Colors.black.withOpacity(.3))
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(
-                                      Constans.kCardBorderRadius))),
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.black,
+          model.isCompleted
+              ? Positioned.fill(
+                  child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    padding: EdgeInsets.all(6),
+                    child: Icon(Icons.done),
+                  ),
+                ))
+              : Positioned.fill(
+                  child: GetBuilder<TaskController>(
+                      init: TaskController(),
+                      builder: (taskController) {
+                        return Align(
+                          alignment: Alignment.topRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              model.delete();
+                              taskController.getAllTasks();
+                              taskController.update();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 10,
+                                        color: Colors.black.withOpacity(.3))
+                                  ],
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(
+                                          Constans.kCardBorderRadius))),
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  }))
+                        );
+                      }))
         ],
       ),
     );

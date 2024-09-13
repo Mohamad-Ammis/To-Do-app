@@ -18,29 +18,25 @@ class ProfilePageController extends GetxController {
       toDoTaskCount = taskController.getToDoTasks().length;
       completedTaskCount = taskController.getCompletedTasks().length;
 
-      // استرجاع حالة الإشعارات عند التشغيل
       await loadNotificationPreference();
       update();
     });
   }
 
-  // دالة لحفظ حالة الإشعارات
   Future<void> saveNotificationPreference(bool isEnabled) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('notificationsEnabled', isEnabled);
   }
 
-  // دالة لتحميل حالة الإشعارات
   Future<void> loadNotificationPreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     notificationsEnabled.value =
-        prefs.getBool('notificationsEnabled') ?? true; // القيمة الافتراضية true
+        prefs.getBool('notificationsEnabled') ?? true; 
   }
 
-  // دالة التحكم في الإشعارات
   void toggleNotifications(bool isEnabled) {
     notificationsEnabled.value = isEnabled;
-    saveNotificationPreference(isEnabled); // حفظ الحالة عند التغيير
+    saveNotificationPreference(isEnabled); 
 
     if (isEnabled) {
       // تفعيل الإشعارات

@@ -96,10 +96,13 @@ class AddTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                               controller.setTime = false;
                               controller.setPriority = false;
                               categoryPageController.selectedCategories.clear();
+                              // homePageController.selectedIndex = 0;
+                              // homePageController.update();
+                              // taskController.displayTasksList =
                               taskController.getAllTasks();
                               taskController.update();
-                              homePageController.selectedIndex = 0;
-                              Get.offAll(() => const HomePage());
+                              navigationController.selectedIndex = 0;
+                              navigationController.update();
                             } else {
                               showErrorSnackBar('Error Happened',
                                       "Date,Time,Priority Fields are required")

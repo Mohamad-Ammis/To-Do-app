@@ -1,26 +1,26 @@
-**Do More** is a note-taking app that helps you organize and plan your days to achieve your goals efficiently. By writing, planning tasks, and setting priorities, the result is simply success.
+# Do More
+**Do More** is a productivity app that helps you organize and plan your days efficiently to achieve your goals. By writing, planning tasks, and setting priorities, you can boost your productivity and achieve success.
 
 ## Features
 
 1. **Add Tasks**: Add tasks with complete details, including task time, priorities, and customizable task appearance.
-2. **Organize Tasks into Categories**: Organize tasks into specific categories to manage them efficiently.
+2. **Organize Tasks into Categories**: Organize tasks efficiently into specific categories for better management.
 3. **Create New Categories**: Easily create new categories, add tasks within them, and view all tasks in each category.
 4. **Delete Tasks or Categories**: Delete any task or category you no longer need to keep your workspace clutter-free.
-5. **Edit Tasks**: A dedicated page to edit and update existing tasks.
-6. **Search and Filter**: View your tasks with a smooth and fast search and filter option.
+5. **Edit Tasks**: Easily edit and update existing tasks from a dedicated page.
+6. **Search and Filter**: Find your tasks quickly with smooth search and filter options.
 7. **Badge System**: Earn badges based on your activity, motivating you to accomplish more.
-8. **Profile Page**: A profile page allows you to access additional information and customize app settings.
-9. **Dark/Light Mode**: Switch between dark and light modes according to your preference.
-10. **Comprehensive Notification System**: Get daily and weekly reminders, along with task-specific notifications that alert you when a task is nearing its deadline or has been completed.
-11. **Notification Preferences**: Enable or disable notifications based on your preferences for a personalized experience.
+8. **Profile Page**: Access additional information and customize app settings through your profile page.
+9. **Dark/Light Mode**: Switch between dark and light modes based on your preference.
+10. **Comprehensive Notification System**: Get daily and weekly reminders, as well as task-specific notifications when deadlines are approaching or tasks are completed.
+11. **Notification Preferences**: Customize your experience by enabling or disabling notifications as per your preferences.
 
 **Do More** keeps you organized and offers tools to help you succeed with ease.
 
-to run this app run this commands first:
+To run the app, use these commands:
 ```
 flutter pub get
 flutter run
-
 ```
 
 ## Screens

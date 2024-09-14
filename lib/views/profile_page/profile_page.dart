@@ -43,7 +43,9 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 60,),
+              SizedBox(
+                height: 60,
+              ),
               const ImageAndTasksSection(),
               CustomProfileListTile(
                 icon: FontAwesomeIcons.trophy,

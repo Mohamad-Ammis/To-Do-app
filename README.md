@@ -1,3 +1,28 @@
+**Do More** is a note-taking app that helps you organize and plan your days to achieve your goals efficiently. By writing, planning tasks, and setting priorities, the result is simply success.
+
+## Features
+
+1. **Add Tasks**: Add tasks with complete details, including task time, priorities, and customizable task appearance.
+2. **Organize Tasks into Categories**: Organize tasks into specific categories to manage them efficiently.
+3. **Create New Categories**: Easily create new categories, add tasks within them, and view all tasks in each category.
+4. **Delete Tasks or Categories**: Delete any task or category you no longer need to keep your workspace clutter-free.
+5. **Edit Tasks**: A dedicated page to edit and update existing tasks.
+6. **Search and Filter**: View your tasks with a smooth and fast search and filter option.
+7. **Badge System**: Earn badges based on your activity, motivating you to accomplish more.
+8. **Profile Page**: A profile page allows you to access additional information and customize app settings.
+9. **Dark/Light Mode**: Switch between dark and light modes according to your preference.
+10. **Comprehensive Notification System**: Get daily and weekly reminders, along with task-specific notifications that alert you when a task is nearing its deadline or has been completed.
+11. **Notification Preferences**: Enable or disable notifications based on your preferences for a personalized experience.
+
+**Do More** keeps you organized and offers tools to help you succeed with ease.
+
+to run this app run this commands first:
+```
+flutter pub get
+flutter run
+
+```
+
 ## Screens
 
 ### Splash

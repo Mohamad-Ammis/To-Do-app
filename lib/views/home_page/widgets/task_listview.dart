@@ -10,7 +10,7 @@ import 'package:to_do_app/views/home_page/widgets/task_card.dart';
 import 'package:lottie/lottie.dart';
 
 class TasksListView extends StatefulWidget {
-  TasksListView({
+  const TasksListView({
     super.key,
   });
 
@@ -21,12 +21,22 @@ class TasksListView extends StatefulWidget {
 class _TasksListViewState extends State<TasksListView> {
   final HomePageController homePageController = Get.put(HomePageController());
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    log('init**********************************************************');
+    log(homePageController.filtersList[homePageController.selectedIndex].title);
+    homePageController.filtersList[homePageController.selectedIndex].onTap();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<TaskController>(
         init: TaskController(),
         builder: (controller) {
-          homePageController.filtersList[homePageController.selectedIndex]
-              .onTap();
+          for (var i = 0; i < controller.displayTasksList.length; i++) {
+            log(controller.displayTasksList[i].title);
+          }
           return controller.displayTasksList.isEmpty
               ? Column(
                   children: [

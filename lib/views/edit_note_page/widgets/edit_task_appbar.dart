@@ -66,9 +66,11 @@ class EditTaskAppbar extends StatelessWidget implements PreferredSizeWidget {
                           controller.selectedPriority = null;
                           controller.taskTitle = null;
                           taskController.getAllTasks();
-                              taskController.update();
-                          homePageController.selectedIndex = 0;
-                          Get.offAll(const HomePage());
+                          taskController.update();
+                          // Get.off(HomePage());
+                          Get.back();
+                          // homePageController.selectedIndex = 0;
+                          // Get.offAll(const HomePage());
                         },
                         icon: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 8),
